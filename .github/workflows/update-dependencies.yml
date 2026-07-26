@@ -1,0 +1,283 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Read current versions
+        id: current
+        shell: bash
+        run: |
+          MC_VERSION=$(grep '^minecraft_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          FABRIC_API=$(grep '^fabric_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          FABRIC_LOADER=$(grep '^fabric_loader_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          MODMENU=$(grep '^modmenu_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          FORGE=$(grep '^forge_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          NEOFORGE=$(grep '^neoforge_version=' gradle.properties | cut -d= -f2 | tr -d '\r')
+          FABRIC_LOOM=$(grep -oP "id 'net\.fabricmc\.fabric-loom' version '\K[^']+" build.gradle)
+          NEOFORGE_MODDEV=$(grep -oP "id 'net\.neoforged\.moddev' version '\K[^']+" build.gradle)
+
+          echo "mc=$MC_VERSION" >> "$GITHUB_OUTPUT"
+          echo "fabric_api=$FABRIC_API" >> "$GITHUB_OUTPUT"
+          echo "fabric_loader=$FABRIC_LOADER" >> "$GITHUB_OUTPUT"
+          echo "modmenu=$MODMENU" >> "$GITHUB_OUTPUT"
+          echo "forge=$FORGE" >> "$GITHUB_OUTPUT"
+          echo "neoforge=$NEOFORGE" >> "$GITHUB_OUTPUT"
+          echo "fabric_loom=$FABRIC_LOOM" >> "$GITHUB_OUTPUT"
+          echo "neoforge_moddev=$NEOFORGE_MODDEV" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest Fabric API
+        id: fabric_api
+        shell: bash
+        env:
+          MC: ${{ steps.current.outputs.mc }}
+        run: |
+          API_VERSION=$(
+            curl -fsSL https://api.modrinth.com/v2/project/P7dR8mSH/version \
+            | jq -r --arg mc "$MC" '
+                map(select(
+                  (.game_versions | index($mc))
+                  and (.loaders | index("fabric"))
+                ))
+                | sort_by(.date_published)
+                | last
+                | .version_number // empty
+              '
+          )
+
+          if [ -z "$API_VERSION" ] || [ "$API_VERSION" = "null" ]; then
+            echo "No matching Fabric API version found for Minecraft $MC"
+            exit 1
+          fi
+
+          echo "version=$API_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest Fabric Loader
+        id: loader
+        shell: bash
+        run: |
+          LOADER=$(
+            curl -fsSL https://meta.fabricmc.net/v2/versions/loader \
+            | jq -r '.[0].version // empty'
+          )
+
+          if [ -z "$LOADER" ] || [ "$LOADER" = "null" ]; then
+            echo "Failed to fetch Fabric Loader version."
+            exit 1
+          fi
+
+          echo "version=$LOADER" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest Mod Menu
+        id: modmenu
+        shell: bash
+        env:
+          MC: ${{ steps.current.outputs.mc }}
+        run: |
+          MODMENU_VERSION=$(
+            curl -fsSL https://api.modrinth.com/v2/project/mOgUt4GM/version \
+            | jq -r --arg mc "$MC" '
+                map(select(
+                  (.game_versions | index($mc))
+                  and (.loaders | index("fabric"))
+                ))
+                | sort_by(.date_published)
+                | last
+                | .version_number // empty
+              '
+          )
+
+          if [ -z "$MODMENU_VERSION" ] || [ "$MODMENU_VERSION" = "null" ]; then
+            echo "No matching Mod Menu version found for Minecraft $MC"
+            exit 1
+          fi
+
+          echo "version=$MODMENU_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest Forge
+        id: forge
+        shell: bash
+        env:
+          MC: ${{ steps.current.outputs.mc }}
+        run: |
+          # Query latest recommended build, fallback to latest build for MC version
+          FORGE_VER=$(
+            curl -fsSL https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json \
+            | jq -r --arg mc "$MC" '
+                .promos[$mc + "-latest"] // .promos[$mc + "-recommended"] // empty
+              '
+          )
+
+          if [ -z "$FORGE_VER" ] || [ "$FORGE_VER" = "null" ]; then
+            echo "No Forge version found for Minecraft $MC"
+            exit 1
+          fi
+
+          echo "version=$FORGE_VER" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest NeoForge
+        id: neoforge
+        shell: bash
+        env:
+          MC: ${{ steps.current.outputs.mc }}
+        run: |
+          # Fetch Maven Metadata and parse matching version array
+          if [[ "$MC" =~ ^1\.([0-9]+)\.([0-9]+)$ ]]; then
+            PREFIX="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+          else
+            PREFIX="$MC"
+          fi
+
+          NEO_VER=$(
+            curl -fsSL https://maven.neoforged.net/releases/net/neoforged/neoforge/maven-metadata.xml \
+            | grep -oP '(?<=<version>)[^<]+(?=</version>)' \
+            | grep "^${PREFIX}\." \
+            | sort -V \
+            | tail -n1
+          )
+
+          if [ -z "$NEO_VER" ]; then
+            echo "No NeoForge version found matching $MC"
+            exit 1
+          fi
+
+          echo "version=$NEO_VER" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest Fabric Loom SNAPSHOT
+        id: loom
+        shell: bash
+        run: |
+          LOOM=$(
+            curl -fsSL https://maven.fabricmc.net/net/fabricmc/fabric-loom/maven-metadata.xml \
+            | grep -oP '(?<=<version>)[^<]+(?=</version>)' \
+            | grep 'SNAPSHOT$' \
+            | sort -V \
+            | tail -n1
+          )
+
+          if [ -z "$LOOM" ]; then
+            echo "Failed to fetch Fabric Loom SNAPSHOT."
+            exit 1
+          fi
+
+          echo "version=$LOOM" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest NeoForge ModDev
+        id: moddev
+        shell: bash
+        run: |
+          MODDEV=$(
+            curl -fsSL https://maven.neoforged.net/releases/net/neoforged/moddev-gradle/maven-metadata.xml \
+            | grep -oP '(?<=<version>)[^<]+(?=</version>)' \
+            | sort -V \
+            | tail -n1
+          )
+
+          if [ -z "$MODDEV" ]; then
+            echo "Failed to fetch NeoForge ModDev version."
+            exit 1
+          fi
+
+          echo "version=$MODDEV" >> "$GITHUB_OUTPUT"
+
+      - name: Update properties
+        shell: bash
+        env:
+          NEW_API: ${{ steps.fabric_api.outputs.version }}
+          NEW_LOADER: ${{ steps.loader.outputs.version }}
+          NEW_MODMENU: ${{ steps.modmenu.outputs.version }}
+          NEW_FORGE: ${{ steps.forge.outputs.version }}
+          NEW_NEOFORGE: ${{ steps.neoforge.outputs.version }}
+          NEW_LOOM: ${{ steps.loom.outputs.version }}
+          NEW_MODDEV: ${{ steps.moddev.outputs.version }}
+        run: |
+          sed -i "s/^fabric_version=.*/fabric_version=${NEW_API}/" gradle.properties
+          sed -i "s/^fabric_loader_version=.*/fabric_loader_version=${NEW_LOADER}/" gradle.properties
+          sed -i "s/^modmenu_version=.*/modmenu_version=${NEW_MODMENU}/" gradle.properties
+          sed -i "s/^forge_version=.*/forge_version=${NEW_FORGE}/" gradle.properties
+          sed -i "s/^neoforge_version=.*/neoforge_version=${NEW_NEOFORGE}/" gradle.properties
+          sed -i "s/id 'net\.fabricmc\.fabric-loom' version '[^']*'/id 'net.fabricmc.fabric-loom' version '${NEW_LOOM}'/" build.gradle
+          sed -i "s/id 'net\.neoforged\.moddev' version '[^']*'/id 'net.neoforged.moddev' version '${NEW_MODDEV}'/" build.gradle
+
+      - name: Check for changes and build PR body
+        id: changes
+        shell: bash
+        env:
+          OLD_API: ${{ steps.current.outputs.fabric_api }}
+          NEW_API: ${{ steps.fabric_api.outputs.version }}
+          OLD_LOADER: ${{ steps.current.outputs.fabric_loader }}
+          NEW_LOADER: ${{ steps.loader.outputs.version }}
+          OLD_MODMENU: ${{ steps.current.outputs.modmenu }}
+          NEW_MODMENU: ${{ steps.modmenu.outputs.version }}
+          OLD_FORGE: ${{ steps.current.outputs.forge }}
+          NEW_FORGE: ${{ steps.forge.outputs.version }}
+          OLD_NEOFORGE: ${{ steps.current.outputs.neoforge }}
+          NEW_NEOFORGE: ${{ steps.neoforge.outputs.version }}
+          OLD_LOOM: ${{ steps.current.outputs.fabric_loom }}
+          NEW_LOOM: ${{ steps.loom.outputs.version }}
+          OLD_MODDEV: ${{ steps.current.outputs.neoforge_moddev }}
+          NEW_MODDEV: ${{ steps.moddev.outputs.version }}
+        run: |
+          if git diff --quiet gradle.properties build.gradle; then
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          
+          BODY="Automated dependency updates"
+          
+          if [ "$OLD_API" != "$NEW_API" ]; then
+          BODY="${BODY}"$'\n'"- Fabric API: \`${OLD_API}\` → \`${NEW_API}\`"
+          fi
+          
+          if [ "$OLD_LOADER" != "$NEW_LOADER" ]; then
+          BODY="${BODY}"$'\n'"- Fabric Loader: \`${OLD_LOADER}\` → \`${NEW_LOADER}\`"
+          fi
+          
+          if [ "$OLD_MODMENU" != "$NEW_MODMENU" ]; then
+          BODY="${BODY}"$'\n'"- Mod Menu: \`${OLD_MODMENU}\` → \`${NEW_MODMENU}\`"
+          fi
+          
+          if [ "$OLD_FORGE" != "$NEW_FORGE" ]; then
+          BODY="${BODY}"$'\n'"- Forge: \`${OLD_FORGE}\` → \`${NEW_FORGE}\`"
+          fi
+          
+          if [ "$OLD_NEOFORGE" != "$NEW_NEOFORGE" ]; then
+          BODY="${BODY}"$'\n'"- NeoForge: \`${OLD_NEOFORGE}\` → \`${NEW_NEOFORGE}\`"
+          fi
+          
+          if [ "$OLD_LOOM" != "$NEW_LOOM" ]; then
+          BODY="${BODY}"$'\n'"- Fabric Loom: \`${OLD_LOOM}\` → \`${NEW_LOOM}\`"
+          fi
+          
+          if [ "$OLD_MODDEV" != "$NEW_MODDEV" ]; then
+          BODY="${BODY}"$'\n'"- NeoForge ModDev: \`${OLD_MODDEV}\` → \`${NEW_MODDEV}\`"
+          fi
+          
+          {
+           echo "pr_body<<EOF"
+           echo "$BODY"
+           echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          base: ${{ github.ref_name }}
+          branch: update-dependencies-${{ github.ref_name }}
+          commit-message: "bump dependencies (${{ github.ref_name }})"
+          title: "bump dependencies (${{ github.ref_name }})"
+          body: ${{ steps.changes.outputs.pr_body }}

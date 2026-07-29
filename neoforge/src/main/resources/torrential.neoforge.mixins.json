@@ -3,7 +3,11 @@
   "minVersion": "0.8",
   "package": "sircow.torrential.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "AnglingTableBlockMixin",
+    "NeoForgeItemMixin",
+    "NeoForgePlayerMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

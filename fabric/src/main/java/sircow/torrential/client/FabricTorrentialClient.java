@@ -39,15 +39,18 @@ public class FabricTorrentialClient implements ClientModInitializer {
 
         ItemTooltipCallback.EVENT.register((stack, context, tooltipType, lines) -> {
             String durabilityTranslatable = Component.translatable("item.durability").getString();
-            String textBeforeSplit = durabilityTranslatable.substring(0, durabilityTranslatable.indexOf(':')).trim();
+            String textBeforeSplit = durabilityTranslatable.contains(":")
+                    ? durabilityTranslatable.substring(0, durabilityTranslatable.indexOf(':')).trim()
+                    : durabilityTranslatable;
             int insertIndex = findTooltipInsertIndex(lines, textBeforeSplit);
             String hook = stack.get(ModComponents.HOOK_COMPONENT);
             String line = stack.get(ModComponents.LINE_COMPONENT);
             String sinker = stack.get(ModComponents.SINKER_COMPONENT);
 
-
             if (stack.is(ModTags.ROD_UPGRADES)) addFishingUpgradeTooltip(lines, insertIndex, stack.getItem());
-            if ((hook != null && !hook.equals("none")) || (line != null && !line.equals("none")) || (sinker != null && !sinker.equals("none"))) addFishingUpgradeTooltip(lines, insertIndex, hook, line, sinker);
+            if ((hook != null && !hook.equals("none")) || (line != null && !line.equals("none")) || (sinker != null && !sinker.equals("none"))) {
+                addFishingUpgradeTooltip(lines, insertIndex, hook, line, sinker);
+            }
         });
     }
 
@@ -89,25 +92,25 @@ public class FabricTorrentialClient implements ClientModInitializer {
         lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.on_rod").withStyle(ChatFormatting.GRAY));
 
         Map<Item, Double> fishingSpeedMap = Map.of(
-                ModItems.COPPER_FISHING_HOOK, 0.5,
-                ModItems.IRON_FISHING_HOOK, 1.0,
-                ModItems.PRISMARINE_FISHING_HOOK, 1.5,
-                ModItems.DIAMOND_FISHING_HOOK, 2.0,
-                ModItems.NETHERITE_FISHING_HOOK, 3.0
+                ModItems.COPPER_FISHING_HOOK.get(), 0.5,
+                ModItems.IRON_FISHING_HOOK.get(), 1.0,
+                ModItems.PRISMARINE_FISHING_HOOK.get(), 1.5,
+                ModItems.DIAMOND_FISHING_HOOK.get(), 2.0,
+                ModItems.NETHERITE_FISHING_HOOK.get(), 3.0
         );
         Map<Item, Double> fortuneMap = Map.of(
-                ModItems.COPPER_LACED_FISHING_LINE, 0.5,
-                ModItems.IRON_LACED_FISHING_LINE, 1.0,
-                ModItems.PRISMARINE_LACED_FISHING_LINE, 1.5,
-                ModItems.DIAMOND_LACED_FISHING_LINE, 2.0,
-                ModItems.NETHERITE_LACED_FISHING_LINE, 3.0
+                ModItems.COPPER_LACED_FISHING_LINE.get(), 0.5,
+                ModItems.IRON_LACED_FISHING_LINE.get(), 1.0,
+                ModItems.PRISMARINE_LACED_FISHING_LINE.get(), 1.5,
+                ModItems.DIAMOND_LACED_FISHING_LINE.get(), 2.0,
+                ModItems.NETHERITE_LACED_FISHING_LINE.get(), 3.0
         );
         Map<Item, Double> luckMap = Map.of(
-                ModItems.COPPER_SINKER, 0.5,
-                ModItems.IRON_SINKER, 1.0,
-                ModItems.PRISMARINE_SINKER, 1.5,
-                ModItems.DIAMOND_SINKER, 2.0,
-                ModItems.NETHERITE_SINKER, 3.0
+                ModItems.COPPER_SINKER.get(), 0.5,
+                ModItems.IRON_SINKER.get(), 1.0,
+                ModItems.PRISMARINE_SINKER.get(), 1.5,
+                ModItems.DIAMOND_SINKER.get(), 2.0,
+                ModItems.NETHERITE_SINKER.get(), 3.0
         );
 
         addIfPresent(lines, insertIndex, item, fishingSpeedMap, "item.torrential.modifiers.fishing_speed");

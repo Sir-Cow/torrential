@@ -17,26 +17,26 @@ public class FabricModItemGroups {
     public static void register() {
         TORRENTIAL_GROUP = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemgroup.torrential.items"))
-                .icon(() -> new ItemStack(ModItems.AQUATIC_FIBER))
+                .icon(() -> new ItemStack(ModItems.AQUATIC_FIBER.get()))
                 .displayItems((displayContext, entries) -> {
-                    entries.accept(ModBlocks.ANGLING_TABLE.asItem());
-                    entries.accept(ModItems.AQUATIC_FIBER);
-                    entries.accept(ModItems.CACHE);
-                    entries.accept(ModItems.COPPER_FISHING_HOOK);
-                    entries.accept(ModItems.IRON_FISHING_HOOK);
-                    entries.accept(ModItems.PRISMARINE_FISHING_HOOK);
-                    entries.accept(ModItems.DIAMOND_FISHING_HOOK);
-                    entries.accept(ModItems.NETHERITE_FISHING_HOOK);
-                    entries.accept(ModItems.COPPER_LACED_FISHING_LINE);
-                    entries.accept(ModItems.IRON_LACED_FISHING_LINE);
-                    entries.accept(ModItems.PRISMARINE_LACED_FISHING_LINE);
-                    entries.accept(ModItems.DIAMOND_LACED_FISHING_LINE);
-                    entries.accept(ModItems.NETHERITE_LACED_FISHING_LINE);
-                    entries.accept(ModItems.COPPER_SINKER);
-                    entries.accept(ModItems.IRON_SINKER);
-                    entries.accept(ModItems.PRISMARINE_SINKER);
-                    entries.accept(ModItems.DIAMOND_SINKER);
-                    entries.accept(ModItems.NETHERITE_SINKER);
+                    entries.accept(ModBlocks.ANGLING_TABLE.get().asItem());
+                    entries.accept(ModItems.AQUATIC_FIBER.get());
+                    entries.accept(ModItems.CACHE.get());
+                    entries.accept(ModItems.COPPER_FISHING_HOOK.get());
+                    entries.accept(ModItems.IRON_FISHING_HOOK.get());
+                    entries.accept(ModItems.PRISMARINE_FISHING_HOOK.get());
+                    entries.accept(ModItems.DIAMOND_FISHING_HOOK.get());
+                    entries.accept(ModItems.NETHERITE_FISHING_HOOK.get());
+                    entries.accept(ModItems.COPPER_LACED_FISHING_LINE.get());
+                    entries.accept(ModItems.IRON_LACED_FISHING_LINE.get());
+                    entries.accept(ModItems.PRISMARINE_LACED_FISHING_LINE.get());
+                    entries.accept(ModItems.DIAMOND_LACED_FISHING_LINE.get());
+                    entries.accept(ModItems.NETHERITE_LACED_FISHING_LINE.get());
+                    entries.accept(ModItems.COPPER_SINKER.get());
+                    entries.accept(ModItems.IRON_SINKER.get());
+                    entries.accept(ModItems.PRISMARINE_SINKER.get());
+                    entries.accept(ModItems.DIAMOND_SINKER.get());
+                    entries.accept(ModItems.NETHERITE_SINKER.get());
                 })
                 .build();
         registerCreativeTab(TORRENTIAL_GROUP);
@@ -46,7 +46,7 @@ public class FabricModItemGroups {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, FabricModItemGroups.TORRENTIAL_TAB_KEY, tab);
     }
 
-    public static void registerItemGroups() {
+    public static void registerFabricItemGroups() {
         register();
     }
 }

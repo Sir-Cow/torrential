@@ -55,5 +55,7 @@
   "advancements.torrential.fishing.tame_nautilus.title": "Fishy Friend",
   "advancements.torrential.fishing.tame_nautilus.description": "Befriend a Nautilus with some Pufferfish",
   "advancements.torrential.fishing.fish_on_nautilus.title": "Fishing With Friends",
-  "advancements.torrential.fishing.fish_on_nautilus.description": "Catch a Fish while riding a Nautilus"
+  "advancements.torrential.fishing.fish_on_nautilus.description": "Catch a Fish while riding a Nautilus",
+
+  "info.torrential.conflict": "%s is incompatible with %s. Remove one of them."
 }

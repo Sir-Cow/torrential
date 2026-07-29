@@ -1,12 +1,9 @@
 package sircow.torrential;
 
 import sircow.torrential.block.ModBlocks;
-import sircow.torrential.component.ModComponents;
 import sircow.torrential.damage.ModDamageTypes;
 import sircow.torrential.item.ModItems;
 import sircow.torrential.platform.Services;
-import sircow.torrential.potion.ModPotions;
-import sircow.torrential.sound.ModSounds;
 import sircow.torrential.tag.ModTags;
 
 public class CommonClass {
@@ -17,9 +14,6 @@ public class CommonClass {
             ModBlocks.registerModBlocks();
             ModItems.registerModItems();
             ModTags.registerModTags();
-            ModComponents.registerModComponents();
-            ModSounds.registerSounds();
-            ModPotions.registerModPotions();
             ModDamageTypes.registerModDamageTypes();
         }
     }

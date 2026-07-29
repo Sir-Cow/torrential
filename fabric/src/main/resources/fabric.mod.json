@@ -17,7 +17,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "sircow.torrential.Torrential"
+            "sircow.torrential.FabricTorrential"
         ],
         "client": [
             "sircow.torrential.client.FabricTorrentialClient"

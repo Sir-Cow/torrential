@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(Player.class)
-public class PlayerMixin {
+public class FabricPlayerMixin {
     // conduit haste bonus
     @ModifyVariable(method = "getDestroySpeed", at = @At(value = "STORE", ordinal = 0), name = "speed")
     private float torrential$applyConduitModifier(float speed, BlockState state) {

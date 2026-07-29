@@ -1,30 +1,25 @@
 package sircow.torrential.trigger;
 
 import net.minecraft.advancements.triggers.CriterionTrigger;
+import net.minecraft.resources.Identifier;
+import sircow.torrential.Constants;
 
-import java.util.function.Supplier;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ModTriggers {
-    public static final TriggerEntry<CustomTrigger> CONDUIT_POWER = new TriggerEntry<>("conduit_power", CustomTrigger::new);
-    public static final TriggerEntry<CustomTrigger> CONDUIT_POWER_FULL = new TriggerEntry<>("conduit_power_full", CustomTrigger::new);
-    public static final TriggerEntry<CustomTrigger> FISH_ON_NAUTILUS = new TriggerEntry<>("fish_on_nautilus", CustomTrigger::new);
+    private static final Map<Identifier, CriterionTrigger<?>> TRIGGERS = new LinkedHashMap<>();
 
-    public static class TriggerEntry<T extends CriterionTrigger<?>> {
-        public final String id;
-        public final Supplier<T> factory;
-        private Supplier<T> trigger;
+    public static final CustomTrigger CONDUIT_POWER = register("conduit_power", new CustomTrigger());
+    public static final CustomTrigger CONDUIT_POWER_FULL = register("conduit_power_full", new CustomTrigger());
+    public static final CustomTrigger FISH_ON_NAUTILUS = register("fish_on_nautilus", new CustomTrigger());
 
-        public TriggerEntry(String id, Supplier<T> factory) {
-            this.id = id;
-            this.factory = factory;
-        }
+    private static <T extends CriterionTrigger<?>> T register(String name, T trigger) {
+        TRIGGERS.put(Constants.id(name), trigger);
+        return trigger;
+    }
 
-        public void bind(Supplier<T> supplier) {
-            this.trigger = supplier;
-        }
-
-        public T get() {
-            return this.trigger.get();
-        }
+    public static Map<Identifier, CriterionTrigger<?>> getTriggers() {
+        return TRIGGERS;
     }
 }

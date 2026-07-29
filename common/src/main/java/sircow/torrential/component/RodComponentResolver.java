@@ -12,11 +12,11 @@ public final class RodComponentResolver {
         if (type == null || type.equals("none")) return ItemStack.EMPTY;
 
         ItemStack result = switch (type) {
-            case "copper" -> new ItemStack(ModItems.COPPER_FISHING_HOOK);
-            case "iron" -> new ItemStack(ModItems.IRON_FISHING_HOOK);
-            case "diamond" -> new ItemStack(ModItems.DIAMOND_FISHING_HOOK);
-            case "netherite" -> new ItemStack(ModItems.NETHERITE_FISHING_HOOK);
-            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_FISHING_HOOK);
+            case "copper" -> new ItemStack(ModItems.COPPER_FISHING_HOOK.get());
+            case "iron" -> new ItemStack(ModItems.IRON_FISHING_HOOK.get());
+            case "diamond" -> new ItemStack(ModItems.DIAMOND_FISHING_HOOK.get());
+            case "netherite" -> new ItemStack(ModItems.NETHERITE_FISHING_HOOK.get());
+            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_FISHING_HOOK.get());
             default -> ItemStack.EMPTY;
         };
 
@@ -30,11 +30,11 @@ public final class RodComponentResolver {
         if (type == null || type.equals("none")) return ItemStack.EMPTY;
 
         ItemStack result = switch (type)  {
-            case "copper" -> new ItemStack(ModItems.COPPER_LACED_FISHING_LINE);
-            case "iron" -> new ItemStack(ModItems.IRON_LACED_FISHING_LINE);
-            case "diamond" -> new ItemStack(ModItems.DIAMOND_LACED_FISHING_LINE);
-            case "netherite" -> new ItemStack(ModItems.NETHERITE_LACED_FISHING_LINE);
-            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_LACED_FISHING_LINE);
+            case "copper" -> new ItemStack(ModItems.COPPER_LACED_FISHING_LINE.get());
+            case "iron" -> new ItemStack(ModItems.IRON_LACED_FISHING_LINE.get());
+            case "diamond" -> new ItemStack(ModItems.DIAMOND_LACED_FISHING_LINE.get());
+            case "netherite" -> new ItemStack(ModItems.NETHERITE_LACED_FISHING_LINE.get());
+            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_LACED_FISHING_LINE.get());
             default -> ItemStack.EMPTY;
         };
 
@@ -48,11 +48,11 @@ public final class RodComponentResolver {
         if (type == null || type.equals("none")) return ItemStack.EMPTY;
 
         ItemStack result = switch (type)  {
-            case "copper" -> new ItemStack(ModItems.COPPER_SINKER);
-            case "iron" -> new ItemStack(ModItems.IRON_SINKER);
-            case "diamond" -> new ItemStack(ModItems.DIAMOND_SINKER);
-            case "netherite" -> new ItemStack(ModItems.NETHERITE_SINKER);
-            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_SINKER);
+            case "copper" -> new ItemStack(ModItems.COPPER_SINKER.get());
+            case "iron" -> new ItemStack(ModItems.IRON_SINKER.get());
+            case "diamond" -> new ItemStack(ModItems.DIAMOND_SINKER.get());
+            case "netherite" -> new ItemStack(ModItems.NETHERITE_SINKER.get());
+            case "prismarine" -> new ItemStack(ModItems.PRISMARINE_SINKER.get());
             default -> ItemStack.EMPTY;
         };
 

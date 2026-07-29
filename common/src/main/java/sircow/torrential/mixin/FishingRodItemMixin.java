@@ -54,41 +54,41 @@ public class FishingRodItemMixin {
         switch (type) {
             case "hook" -> {
                 if (Objects.equals(rod.get(ModComponents.HOOK_COMPONENT), "copper"))
-                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.COPPER_FISHING_HOOK, "copper", player, hand);
+                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.COPPER_FISHING_HOOK.get(), "copper", player, hand);
                 if (Objects.equals(rod.get(ModComponents.HOOK_COMPONENT), "iron"))
-                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.IRON_FISHING_HOOK, "iron", player, hand);
+                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.IRON_FISHING_HOOK.get(), "iron", player, hand);
                 if (Objects.equals(rod.get(ModComponents.HOOK_COMPONENT), "prismarine"))
-                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.PRISMARINE_FISHING_HOOK, "prismarine", player, hand);
+                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.PRISMARINE_FISHING_HOOK.get(), "prismarine", player, hand);
                 if (Objects.equals(rod.get(ModComponents.HOOK_COMPONENT), "diamond"))
-                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.DIAMOND_FISHING_HOOK, "diamond", player, hand);
+                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.DIAMOND_FISHING_HOOK.get(), "diamond", player, hand);
                 if (Objects.equals(rod.get(ModComponents.HOOK_COMPONENT), "netherite"))
-                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.NETHERITE_FISHING_HOOK, "netherite", player, hand);
+                    update(rod, ModComponents.HOOK_COMPONENT, ModComponents.HOOK_DURABILITY, ModComponents.HOOK_UNBREAKING, ModItems.NETHERITE_FISHING_HOOK.get(), "netherite", player, hand);
             }
 
             case "line" -> {
                 if (Objects.equals(rod.get(ModComponents.LINE_COMPONENT), "copper"))
-                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.COPPER_LACED_FISHING_LINE, "copper", player, hand);
+                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.COPPER_LACED_FISHING_LINE.get(), "copper", player, hand);
                 if (Objects.equals(rod.get(ModComponents.LINE_COMPONENT), "iron"))
-                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.IRON_LACED_FISHING_LINE, "iron", player, hand);
+                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.IRON_LACED_FISHING_LINE.get(), "iron", player, hand);
                 if (Objects.equals(rod.get(ModComponents.LINE_COMPONENT), "prismarine"))
-                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.PRISMARINE_LACED_FISHING_LINE, "prismarine", player, hand);
+                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.PRISMARINE_LACED_FISHING_LINE.get(), "prismarine", player, hand);
                 if (Objects.equals(rod.get(ModComponents.LINE_COMPONENT), "diamond"))
-                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.DIAMOND_LACED_FISHING_LINE, "diamond", player, hand);
+                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.DIAMOND_LACED_FISHING_LINE.get(), "diamond", player, hand);
                 if (Objects.equals(rod.get(ModComponents.LINE_COMPONENT), "netherite"))
-                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.NETHERITE_LACED_FISHING_LINE, "netherite", player, hand);
+                    update(rod, ModComponents.LINE_COMPONENT, ModComponents.LINE_DURABILITY, ModComponents.LINE_UNBREAKING, ModItems.NETHERITE_LACED_FISHING_LINE.get(), "netherite", player, hand);
             }
 
             case "sinker" -> {
                 if (Objects.equals(rod.get(ModComponents.SINKER_COMPONENT), "copper"))
-                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.COPPER_SINKER, "copper", player, hand);
+                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.COPPER_SINKER.get(), "copper", player, hand);
                 if (Objects.equals(rod.get(ModComponents.SINKER_COMPONENT), "iron"))
-                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.IRON_SINKER, "iron", player, hand);
+                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.IRON_SINKER.get(), "iron", player, hand);
                 if (Objects.equals(rod.get(ModComponents.SINKER_COMPONENT), "prismarine"))
-                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.PRISMARINE_SINKER, "prismarine", player, hand);
+                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.PRISMARINE_SINKER.get(), "prismarine", player, hand);
                 if (Objects.equals(rod.get(ModComponents.SINKER_COMPONENT), "diamond"))
-                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.DIAMOND_SINKER, "diamond", player, hand);
+                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.DIAMOND_SINKER.get(), "diamond", player, hand);
                 if (Objects.equals(rod.get(ModComponents.SINKER_COMPONENT), "netherite"))
-                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.NETHERITE_SINKER, "netherite", player, hand);
+                    update(rod, ModComponents.SINKER_COMPONENT, ModComponents.SINKER_DURABILITY, ModComponents.SINKER_UNBREAKING, ModItems.NETHERITE_SINKER.get(), "netherite", player, hand);
             }
         }
     }

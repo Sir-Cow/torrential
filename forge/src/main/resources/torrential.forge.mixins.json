@@ -4,7 +4,11 @@
   "package": "sircow.torrential.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "AnglingTableBlockMixin",
+    "ForgeItemMixin",
+    "ForgePlayerMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

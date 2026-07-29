@@ -171,12 +171,12 @@ public abstract class FishingHookMixin {
         if (!(owner instanceof ServerPlayer serverPlayer)) return;
 
         for (ItemStack itemStack : items) {
-            if (itemStack.is(ModTags.FISHING_LOOT_FISH) && serverPlayer.getVehicle() instanceof Nautilus) ModTriggers.FISH_ON_NAUTILUS.get().trigger(serverPlayer);
+            if (itemStack.is(ModTags.FISHING_LOOT_FISH) && serverPlayer.getVehicle() instanceof Nautilus) ModTriggers.FISH_ON_NAUTILUS.trigger(serverPlayer);
         }
     }
 
     @Inject(method = "retrieve", at = @At(value = "TAIL"))
-    private void torrential$causeExhaustion(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
+    private void torrential$causeExhaustion(ItemStack rod, CallbackInfoReturnable<Integer> cir) {
         Player owner = this.getPlayerOwner();
         if (owner != null) owner.causeFoodExhaustion(0.2F);
     }

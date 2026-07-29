@@ -13,10 +13,10 @@ import sircow.torrential.potion.ModPotions;
 public class PotionBrewingMixin {
     @Inject(method = "addVanillaMixes", at = @At("HEAD"), cancellable = true)
     private static void torrential$addVanillaMixes(PotionBrewing.Builder builder, CallbackInfo ci) {
-        builder.addMix(Potions.WATER, Items.RABBIT_HIDE, ModPotions.LUCK);
-        builder.addMix(ModPotions.LUCK, Items.REDSTONE, ModPotions.LONG_LUCK);
-        builder.addMix(ModPotions.LUCK, Items.GLOWSTONE_DUST, ModPotions.STRONG_LUCK);
-        builder.addMix(Potions.WATER, Items.NAUTILUS_SHELL, ModPotions.NAUTILUS_BLESSING);
+        builder.addMix(Potions.WATER, Items.RABBIT_HIDE, ModPotions.LUCK_HOLDER);
+        builder.addMix(ModPotions.LUCK_HOLDER, Items.REDSTONE, ModPotions.LONG_LUCK_HOLDER);
+        builder.addMix(ModPotions.LUCK_HOLDER, Items.GLOWSTONE_DUST, ModPotions.STRONG_LUCK_HOLDER);
+        builder.addMix(Potions.WATER, Items.NAUTILUS_SHELL, ModPotions.NAUTILUS_BLESSING_HOLDER);
         ci.cancel();
     }
 }

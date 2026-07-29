@@ -5,9 +5,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.registries.RegisterEvent;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import sircow.torrential.Constants;
 import sircow.torrential.block.ModBlocks;
 import sircow.torrential.component.ModComponents;
@@ -19,20 +20,20 @@ import sircow.torrential.trigger.ModTriggers;
 import java.util.HashMap;
 import java.util.Map;
 
-@EventBusSubscriber(modid = Constants.MOD_ID)
-public class RegisterEventHandler {
+@Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ForgeRegisterEventHandler {
     private static final Map<ResourceKey<Block>, Block> REGISTERED_BLOCKS = new HashMap<>();
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
-        event.register(Registries.BLOCK, helper ->
+        event.register(ForgeRegistries.Keys.BLOCKS, helper ->
                 ModBlocks.getBlocks().forEach((id, definition) -> {
                     Block block = definition.factory().get();
                     REGISTERED_BLOCKS.put(id.block(), block);
                     helper.register(id.block(), block);
                 })
         );
-        event.register(Registries.ITEM, helper -> {
+        event.register(ForgeRegistries.Keys.ITEMS, helper -> {
             ModBlocks.getBlocks().forEach((id, definition) -> {
                 Block block = REGISTERED_BLOCKS.get(id.block());
                 if (block != null) {

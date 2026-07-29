@@ -10,7 +10,6 @@
     "FishingRodItemMixin",
     "ItemMixin",
     "ItemsMixin",
-    "PotionBrewingMixin",
     "ServerPlayerMixin",
     "TridentItemMixin"
   ],

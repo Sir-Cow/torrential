@@ -1,6 +1,7 @@
 package sircow.torrential.potion;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,14 +19,22 @@ public class ModPotions {
     public static final Potion LONG_LUCK = register("long_luck", new Potion("luck", new MobEffectInstance(MobEffects.LUCK, 9600)));
     public static final Potion STRONG_LUCK = register("strong_luck", new Potion("luck", new MobEffectInstance(MobEffects.LUCK, 3600, 1)));
 
-    public static final Holder<Potion> NAUTILUS_BLESSING_HOLDER = Holder.direct(NAUTILUS_BLESSING);
-    public static final Holder<Potion> LUCK_HOLDER = Holder.direct(LUCK);
-    public static final Holder<Potion> LONG_LUCK_HOLDER = Holder.direct(LONG_LUCK);
-    public static final Holder<Potion> STRONG_LUCK_HOLDER = Holder.direct(STRONG_LUCK);
-
     private static Potion register(String name, Potion potion) {
         POTIONS.put(Constants.id(name), potion);
         return potion;
+    }
+
+    public static Holder.Reference<Potion> nautilusBlessingHolder() {
+        return BuiltInRegistries.POTION.get(Constants.id("nautilus_blessing")).orElseThrow();
+    }
+    public static Holder.Reference<Potion> luckHolder() {
+        return BuiltInRegistries.POTION.get(Constants.id("luck")).orElseThrow();
+    }
+    public static Holder.Reference<Potion> longLuckHolder() {
+        return BuiltInRegistries.POTION.get(Constants.id("long_luck")).orElseThrow();
+    }
+    public static Holder.Reference<Potion> strongLuckHolder() {
+        return BuiltInRegistries.POTION.get(Constants.id("strong_luck")).orElseThrow();
     }
 
     public static Map<Identifier, Potion> getPotions() {

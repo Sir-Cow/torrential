@@ -3,7 +3,18 @@
   "minVersion": "0.8",
   "package": "sircow.torrential.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "ConduitBlockEntityAccessor",
+    "ConduitBlockEntityMixin",
+    "FishingHookMixin",
+    "FishingRodItemMixin",
+    "ItemMixin",
+    "ItemsMixin",
+    "PlayerMixin",
+    "PotionBrewingMixin",
+    "ServerPlayerMixin",
+    "TridentItemMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

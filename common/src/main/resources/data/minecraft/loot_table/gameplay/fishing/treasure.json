@@ -1,0 +1,136 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:experience_bottle",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_otherside",
+          "expand": true,
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_golden_apple",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_apple",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "torrential:aquatic_fiber",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nautilus_shell",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:name_tag",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "book",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30,
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30,
+              "options": "#minecraft:on_random_loot"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.25,
+                "max": 0.5
+              },
+              "add": false,
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30,
+              "options": "#minecraft:on_random_loot"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.25,
+                "max": 0.5
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "torrential:cache",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_contents",
+              "component": "minecraft:container",
+              "entries": [
+                {
+                  "type": "minecraft:loot_table",
+                  "value": "torrential:chests/cache"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:tag",
+          "expand": true,
+          "name": "minecraft:creeper_drop_music_discs",
+          "weight": 2
+        }
+      ],
+      "conditions": [],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/treasure"
+}

@@ -1,0 +1,203 @@
+{
+  "parent": "minecraft:husbandry/fishy_business",
+  "criteria": {
+    "hook_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:hook_component": "copper"
+          }
+        }]
+      }
+    },
+    "hook_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:hook_component": "iron"
+          }
+        }]
+      }
+    },
+    "hook_prismarine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:hook_component": "prismarine"
+          }
+        }]
+      }
+    },
+    "hook_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:hook_component": "diamond"
+          }
+        }]
+      }
+    },
+    "hook_netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:hook_component": "netherite"
+          }
+        }]
+      }
+    },
+    "line_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:line_component": "copper"
+          }
+        }]
+      }
+    },
+    "line_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:line_component": "iron"
+          }
+        }]
+      }
+    },
+    "line_prismarine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:line_component": "prismarine"
+          }
+        }]
+      }
+    },
+    "line_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:line_component": "diamond"
+          }
+        }]
+      }
+    },
+    "line_netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:line_component": "netherite"
+          }
+        }]
+      }
+    },
+    "sinker_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:sinker_component": "copper"
+          }
+        }]
+      }
+    },
+    "sinker_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:sinker_component": "iron"
+          }
+        }]
+      }
+    },
+    "sinker_prismarine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:sinker_component": "prismarine"
+          }
+        }]
+      }
+    },
+    "sinker_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:sinker_component": "diamond"
+          }
+        }]
+      }
+    },
+    "sinker_netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:fishing_rod",
+          "components": {
+            "torrential:sinker_component": "netherite"
+          }
+        }]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hook_copper",
+      "hook_iron",
+      "hook_prismarine",
+      "hook_diamond",
+      "hook_netherite",
+      "line_copper",
+      "line_iron",
+      "line_prismarine",
+      "line_diamond",
+      "line_netherite",
+      "sinker_copper",
+      "sinker_iron",
+      "sinker_prismarine",
+      "sinker_diamond",
+      "sinker_netherite"
+    ]
+  ],
+
+  "display": {
+    "description": {
+      "translate": "advancements.torrential.fishing.upgrade_fishing_rod.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "torrential:angling_table"
+    },
+    "title": {
+      "translate": "advancements.torrential.fishing.upgrade_fishing_rod.title"
+    }
+  },
+  "sends_telemetry_event": true
+}

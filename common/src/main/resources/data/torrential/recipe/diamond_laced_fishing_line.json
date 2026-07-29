@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": "torrential:aquatic_fiber",
+    "X": "minecraft:diamond"
+  },
+  "pattern": [
+    " X ",
+    "XFX",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "torrential:diamond_laced_fishing_line"
+  }
+}

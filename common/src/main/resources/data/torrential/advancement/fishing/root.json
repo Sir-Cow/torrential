@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "fishing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:fishing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/prismarine_bricks",
+    "description": {
+      "translate": "advancements.torrential.fishing.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:fishing_rod"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.torrential.fishing.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "fishing_rod"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

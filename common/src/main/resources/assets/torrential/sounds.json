@@ -1,0 +1,15 @@
+{
+  "cache_open": {
+    "subtitle": "sounds.torrential.cache_open",
+    "sounds": [
+      "minecraft:block/barrel/open1",
+      "minecraft:block/barrel/open2"
+    ]
+  },
+  "cache_close": {
+    "subtitle": "sounds.torrential.cache_close",
+    "sounds": [
+      "minecraft:block/barrel/close"
+    ]
+  }
+}

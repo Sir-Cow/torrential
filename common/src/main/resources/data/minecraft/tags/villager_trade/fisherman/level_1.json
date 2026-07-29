@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "torrential:fisherman/1/coal_emerald",
+    "torrential:fisherman/1/emerald_cod_bucket",
+    "torrential:fisherman/1/raw_cod_and_emerald_cooked_cod",
+    "torrential:fisherman/1/string_emerald"
+  ]
+}

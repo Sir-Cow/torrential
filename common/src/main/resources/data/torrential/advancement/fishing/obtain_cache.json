@@ -1,0 +1,32 @@
+{
+  "parent": "torrential:fishing/fish_treasure",
+  "criteria": {
+    "cache": {
+      "conditions": {
+        "item": {
+          "items": "torrential:cache"
+        }
+      },
+      "trigger": "minecraft:fishing_rod_hooked"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.torrential.fishing.obtain_cache.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "torrential:cache"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.torrential.fishing.obtain_cache.title"
+    }
+  },
+  "requirements": [
+    [
+      "cache"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

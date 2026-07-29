@@ -18,6 +18,9 @@
     "entrypoints": {
         "main": [
             "sircow.torrential.Torrential"
+        ],
+        "client": [
+            "sircow.torrential.client.FabricTorrentialClient"
         ]
     },
     "mixins": [

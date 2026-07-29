@@ -1,0 +1,27 @@
+{
+  "parent": "torrential:fishing/obtain_cache",
+  "criteria": {
+    "conduit_power": {
+      "trigger": "torrential:conduit_power"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.torrential.fishing.conduit_power.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:conduit"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.torrential.fishing.conduit_power.title"
+    }
+  },
+  "requirements": [
+    [
+      "conduit_power"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,19 @@
+{
+  "values": [
+    "minecraft:experience_bottle",
+    "minecraft:music_disc_otherside",
+    "minecraft:enchanted_golden_apple",
+    "minecraft:golden_apple",
+    "torrential:aquatic_fiber",
+    "minecraft:nautilus_shell",
+    "minecraft:name_tag",
+    "minecraft:book",
+    "minecraft:enchanted_book",
+    "minecraft:diamond",
+    "minecraft:emerald",
+    "minecraft:crossbow",
+    "minecraft:bow",
+    "torrential:cache",
+    "#minecraft:creeper_drop_music_discs"
+  ]
+}

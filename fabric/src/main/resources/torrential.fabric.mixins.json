@@ -3,7 +3,10 @@
   "minVersion": "0.8",
   "package": "sircow.torrential.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "AnglingTableBlockMixin",
+    "FabricItemMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

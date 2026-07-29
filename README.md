@@ -10,10 +10,16 @@ Obtain your first fishing rod parts by getting some aquatic fiber, which can be 
 Craft an angling table to apply and remove your new parts. View the durability of your parts in the new tooltip added onto your fishing rod!
 
 ### 📦 Caches
-Don't want to rush the End for shulker boxes? Try your luck at finding a cache! While filled with treasure, caches also work as a weaker version of the sought after shulker box.
+Don't want to rush the End for shulker boxes? Try your luck at catching a cache! While filled with treasure, caches also work as a weaker version of the sought after shulker box.
 
 ### 🧿 Updated Conduit
 The conduit is now a powerful tool for fishing as it grants the player bonus fishing speed and luck to those nearby. As you power up your conduit with additional prismarine blocks, the effect of the conduit will strengthen.
+
+Conduit power will also grant the player with:
+- Enhanced mining speed. (stacks with Haste)
+- Riptide usage outside of the water.
+- Unlimited water breathing.
+- Night vision while underwater.
 
 ### 🐟 Notable Changes
 - Fishing rods no longer have durability. No need to maintain your rod, just make sure your fishing rod parts are well kept.

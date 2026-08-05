@@ -21,8 +21,7 @@ import sircow.torrential.menu.AnglingTableMenu;
 
 @Mixin(AnglingTableBlock.class)
 public class AnglingTableBlockMixin {
-    @Shadow
-    private static final Component CONTAINER_TITLE = Component.translatable("container.torrential.angling_table");
+    @Shadow private static final Component CONTAINER_TITLE = Component.translatable("container.torrential.angling_table");
 
     @Inject(method = "getMenuProvider", at = @At("HEAD"), cancellable = true)
     private void torrential$checkForAnglingTable(BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<MenuProvider> cir) {

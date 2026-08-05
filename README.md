@@ -1,6 +1,11 @@
 ## 🌊 Torrential
 **This mod adds much needed depth into Minecraft's fishing system by adding fishing rod parts, fishing loot table changes, and an improved conduit.**
 
+## 🖥️ Download
+| Modrinth | CurseForge |
+|:---:|:---:|
+| <div align="center">[![Modrinth Downloads](https://img.shields.io/modrinth/dt/sTjZv5lN?logo=modrinth)](https://modrinth.com/project/sTjZv5lN)</div> | <div align="center">[![CurseForge Downloads](https://cf.way2muchnoise.eu/full_1626506.svg)](https://www.curseforge.com/minecraft/mc-mods/torrential)</div> |
+
 ### ⚓ Fishing Rod Parts
 Obtain your first fishing rod parts by getting some aquatic fiber, which can be found in the fishing loot pool or in a buried treasure chest. By using some common tool materials, you can turn the fiber into a hook, line, or sinker!
 - Fishing hooks will increase your rod's fishing speed allowing you to catch fish at a more efficient rate.

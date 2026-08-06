@@ -1,11 +1,14 @@
 package sircow.torrential.block;
 
-import net.minecraft.references.BlockItemId;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import sircow.torrential.Constants;
 import sircow.torrential.block.custom.AnglingTableBlock;
 
 import java.util.LinkedHashMap;
@@ -14,10 +17,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    private static final Map<BlockItemId, Definition> BLOCKS = new LinkedHashMap<>();
+    private static final Map<Identifier, Definition> BLOCKS = new LinkedHashMap<>();
 
-    public static Supplier<Block> ANGLING_TABLE = register(
-            ModBlockItemIds.ANGLING_TABLE,
+    public static final Supplier<Block> ANGLING_TABLE = register(
+            Constants.id("angling_table"),
             AnglingTableBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_RED)
@@ -27,13 +30,13 @@ public class ModBlocks {
                     .ignitedByLava()
     );
 
-    private static Supplier<Block> register(BlockItemId id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+    private static Supplier<Block> register(Identifier id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Supplier<Block> memoizedSupplier = new Supplier<>() {
             private Block instance;
 
             @Override
             public Block get() {
-                if (instance == null) instance = factory.apply(properties.setId(id.block()));
+                if (instance == null) instance = factory.apply(properties.setId(ResourceKey.create(Registries.BLOCK, id)));
                 return instance;
             }
         };
@@ -42,7 +45,7 @@ public class ModBlocks {
         return memoizedSupplier;
     }
 
-    public static Map<BlockItemId, Definition> getBlocks() {
+    public static Map<Identifier, Definition> getBlocks() {
         return BLOCKS;
     }
 

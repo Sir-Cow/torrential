@@ -1,6 +1,7 @@
 package sircow.torrential.event;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -24,22 +25,22 @@ import java.util.Map;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class NeoForgeRegisterEventHandler {
-    private static final Map<ResourceKey<Block>, Block> REGISTERED_BLOCKS = new HashMap<>();
+    private static final Map<Identifier, Block> REGISTERED_BLOCKS = new HashMap<>();
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
         event.register(Registries.BLOCK, helper ->
                 ModBlocks.getBlocks().forEach((id, definition) -> {
                     Block block = definition.factory().get();
-                    REGISTERED_BLOCKS.put(id.block(), block);
-                    helper.register(id.block(), block);
+                    REGISTERED_BLOCKS.put(id, block);
+                    helper.register(id, block);
                 })
         );
         event.register(Registries.ITEM, helper -> {
             ModBlocks.getBlocks().forEach((id, definition) -> {
-                Block block = REGISTERED_BLOCKS.get(id.block());
+                Block block = REGISTERED_BLOCKS.get(id);
                 if (block != null) {
-                    helper.register(id.item(), new BlockItem(block, new Item.Properties().setId(id.item())));
+                    helper.register(id, new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
                 }
             });
 

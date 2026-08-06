@@ -1,6 +1,6 @@
 package sircow.torrential.trigger;
 
-import net.minecraft.advancements.triggers.CriterionTrigger;
+import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.resources.Identifier;
 import sircow.torrential.Constants;
 

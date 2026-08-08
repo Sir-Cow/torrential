@@ -1,11 +1,8 @@
 package sircow.torrential.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.animal.nautilus.Nautilus;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
@@ -20,9 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import sircow.torrential.component.ModComponents;
 import sircow.torrential.tag.ModTags;
-import sircow.torrential.trigger.ModTriggers;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -73,8 +68,6 @@ public abstract class FishingHookMixin {
 
         MobEffectInstance conduit = owner.getEffect(MobEffects.CONDUIT_POWER);
         if (conduit != null) this.lureSpeed += (int)((conduit.getAmplifier() + 1) * 50.0);
-        MobEffectInstance blessing = owner.getEffect(MobEffects.BREATH_OF_THE_NAUTILUS);
-        if (blessing != null) this.lureSpeed += 50;
 
         String hook = rod.get(ModComponents.HOOK_COMPONENT);
 
@@ -150,8 +143,6 @@ public abstract class FishingHookMixin {
 
         MobEffectInstance conduit = owner.getEffect(MobEffects.CONDUIT_POWER);
         if (conduit != null) result += (conduit.getAmplifier() + 1) * 0.5F;
-        MobEffectInstance blessing = owner.getEffect(MobEffects.BREATH_OF_THE_NAUTILUS);
-        if (blessing != null) result += 0.5F;
 
         String sinker = rod.get(ModComponents.SINKER_COMPONENT);
 
@@ -162,17 +153,6 @@ public abstract class FishingHookMixin {
         else if (Objects.equals(sinker, "netherite")) result += SINKER_LUCK_NETHERITE;
 
         args.set(0, result);
-    }
-
-    // trigger fish treasure advancement
-    @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Ljava/util/List;iterator()Ljava/util/Iterator;"))
-    private void torrential$onEachFishedItem(ItemStack rod, CallbackInfoReturnable<Integer> cir, @Local(name = "items") List<ItemStack> items) {
-        Player owner = this.getPlayerOwner();
-        if (!(owner instanceof ServerPlayer serverPlayer)) return;
-
-        for (ItemStack itemStack : items) {
-            if (itemStack.is(ModTags.FISHING_LOOT_FISH) && serverPlayer.getVehicle() instanceof Nautilus) ModTriggers.FISH_ON_NAUTILUS.trigger(serverPlayer);
-        }
     }
 
     @Inject(method = "retrieve", at = @At(value = "TAIL"))

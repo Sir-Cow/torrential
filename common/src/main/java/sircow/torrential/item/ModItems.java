@@ -2,11 +2,13 @@ package sircow.torrential.item;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.ItemContainerContents;
+import org.jetbrains.annotations.NotNull;
 import sircow.torrential.item.custom.CacheItem;
+import sircow.torrential.tag.ModTags;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,17 +29,27 @@ public class ModItems {
     );
     public static final Supplier<Item> COPPER_FISHING_HOOK = registerItem(
             ModItemIds.COPPER_FISHING_HOOK,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.COPPER_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(190)
                     .stacksTo(1)
-                    .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_FISHING_HOOK = registerItem(
             ModItemIds.IRON_FISHING_HOOK,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.IRON_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(250)
                     .stacksTo(1)
-                    .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_FISHING_HOOK = registerItem(
             ModItemIds.PRISMARINE_FISHING_HOOK,
@@ -47,32 +59,52 @@ public class ModItems {
     );
     public static final Supplier<Item> DIAMOND_FISHING_HOOK = registerItem(
             ModItemIds.DIAMOND_FISHING_HOOK,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.DIAMONDS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(1562)
                     .stacksTo(1)
-                    .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_FISHING_HOOK = registerItem(
             ModItemIds.NETHERITE_FISHING_HOOK,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.NETHERITE_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(2032)
                     .stacksTo(1)
-                    .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()
     );
     public static final Supplier<Item> COPPER_LACED_FISHING_LINE = registerItem(
             ModItemIds.COPPER_LACED_FISHING_LINE,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.COPPER_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(190)
                     .stacksTo(1)
-                    .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_LACED_FISHING_LINE = registerItem(
             ModItemIds.IRON_LACED_FISHING_LINE,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.IRON_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(250)
                     .stacksTo(1)
-                    .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_LACED_FISHING_LINE = registerItem(
             ModItemIds.PRISMARINE_LACED_FISHING_LINE,
@@ -82,32 +114,52 @@ public class ModItems {
     );
     public static final Supplier<Item> DIAMOND_LACED_FISHING_LINE = registerItem(
             ModItemIds.DIAMOND_LACED_FISHING_LINE,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.DIAMONDS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(1562)
                     .stacksTo(1)
-                    .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_LACED_FISHING_LINE = registerItem(
             ModItemIds.NETHERITE_LACED_FISHING_LINE,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.NETHERITE_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(2032)
                     .stacksTo(1)
-                    .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()
     );
     public static final Supplier<Item> COPPER_SINKER = registerItem(
             ModItemIds.COPPER_SINKER,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.COPPER_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(190)
                     .stacksTo(1)
-                    .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_SINKER = registerItem(
             ModItemIds.IRON_SINKER,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.IRON_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(250)
                     .stacksTo(1)
-                    .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_SINKER = registerItem(
             ModItemIds.PRISMARINE_SINKER,
@@ -117,17 +169,27 @@ public class ModItems {
     );
     public static final Supplier<Item> DIAMOND_SINKER = registerItem(
             ModItemIds.DIAMOND_SINKER,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.DIAMONDS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(1562)
                     .stacksTo(1)
-                    .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_SINKER = registerItem(
             ModItemIds.NETHERITE_SINKER,
+            properties -> new Item(properties) {
+                @Override
+                public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack repairCandidate) {
+                    return repairCandidate.is(ModTags.NETHERITE_INGOTS) || super.isValidRepairItem(stack, repairCandidate);
+                }
+            },
             () -> new Item.Properties()
                     .durability(2032)
                     .stacksTo(1)
-                    .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()
     );
 
@@ -141,7 +203,7 @@ public class ModItems {
 
             @Override
             public Item get() {
-                if (instance == null) instance = factory.apply(propertiesSupplier.get().setId(id));
+                if (instance == null) instance = factory.apply(propertiesSupplier.get());
                 return instance;
             }
         };

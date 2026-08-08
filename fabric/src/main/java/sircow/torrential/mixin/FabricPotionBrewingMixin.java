@@ -16,6 +16,5 @@ public class FabricPotionBrewingMixin {
         builder.addMix(Potions.AWKWARD, Items.RABBIT_HIDE, ModPotions.luckHolder());
         builder.addMix(ModPotions.luckHolder(), Items.REDSTONE, ModPotions.longLuckHolder());
         builder.addMix(ModPotions.luckHolder(), Items.GLOWSTONE_DUST, ModPotions.strongLuckHolder());
-        builder.addMix(Potions.AWKWARD, Items.NAUTILUS_SHELL, ModPotions.nautilusBlessingHolder());
     }
 }

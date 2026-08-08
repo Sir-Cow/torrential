@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(Player.class)
 public class NeoForgePlayerMixin {
     // conduit haste bonus
-    @ModifyVariable(method = "getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)F", at = @At(value = "STORE", ordinal = 0), name = "speed")
+    @ModifyVariable(method = "getDigSpeed(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)F", at = @At(value = "STORE", ordinal = 2))
     private float torrential$applyConduitModifier(float speed, BlockState state) {
         Player self = (Player)(Object)this;
         MobEffectInstance conduit = self.getEffect(MobEffects.CONDUIT_POWER);

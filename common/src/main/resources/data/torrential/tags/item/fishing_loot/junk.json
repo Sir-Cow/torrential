@@ -7,7 +7,6 @@
     "minecraft:glass_bottle",
     "minecraft:iron_nugget",
     "minecraft:gold_nugget",
-    "minecraft:copper_nugget",
     "minecraft:clay_ball",
     "minecraft:carrot",
     "minecraft:potato",
@@ -18,17 +17,14 @@
     "minecraft:cocoa_beans",
     "minecraft:kelp",
     "minecraft:large_fern",
-    "minecraft:leaf_litter",
     "minecraft:moss_block",
     "minecraft:mycelium",
-    "minecraft:pale_hanging_moss",
     "minecraft:pink_petals",
     "minecraft:red_mushroom",
     "minecraft:short_grass",
     "minecraft:snowball",
     "minecraft:stone",
     "minecraft:sweet_berries",
-    "minecraft:tall_grass",
-    "minecraft:wildflowers"
+    "minecraft:tall_grass"
   ]
 }

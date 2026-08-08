@@ -1,12 +1,11 @@
 package sircow.torrential.event;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
@@ -23,7 +22,7 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ForgeRegisterEventHandler {
-    private static final Map<Identifier, Block> REGISTERED_BLOCKS = new HashMap<>();
+    private static final Map<ResourceLocation, Block> REGISTERED_BLOCKS = new HashMap<>();
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
@@ -38,7 +37,7 @@ public class ForgeRegisterEventHandler {
             ModBlocks.getBlocks().forEach((id, definition) -> {
                 Block block = REGISTERED_BLOCKS.get(id);
                 if (block != null) {
-                    helper.register(id, new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
+                    helper.register(id, new BlockItem(block, new Item.Properties()));
                 }
             });
 

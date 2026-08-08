@@ -1,6 +1,6 @@
 package sircow.torrential.sound;
 
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import sircow.torrential.Constants;
 
@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ModSounds {
-    private static final Map<Identifier, SoundEvent> SOUNDS = new LinkedHashMap<>();
+    private static final Map<ResourceLocation, SoundEvent> SOUNDS = new LinkedHashMap<>();
 
     public static final SoundEvent CACHE_OPEN = register("cache_open");
     public static final SoundEvent CACHE_CLOSE = register("cache_close");
@@ -17,17 +17,17 @@ public class ModSounds {
         return register(Constants.id(name));
     }
 
-    private static SoundEvent register(Identifier name) {
+    private static SoundEvent register(ResourceLocation name) {
         return register(name, name);
     }
 
-    private static SoundEvent register(Identifier name, Identifier location) {
+    private static SoundEvent register(ResourceLocation name, ResourceLocation location) {
         SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(location);
         SOUNDS.put(name, soundEvent);
         return soundEvent;
     }
 
-    public static Map<Identifier, SoundEvent> getSounds() {
+    public static Map<ResourceLocation, SoundEvent> getSounds() {
         return SOUNDS;
     }
 }

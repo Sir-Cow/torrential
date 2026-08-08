@@ -2,7 +2,7 @@ package sircow.torrential.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.network.chat.Component;
@@ -32,7 +32,7 @@ public class FabricTorrentialClient implements ClientModInitializer {
     }
 
     private void registerCustomTooltip() {
-        ClientTooltipComponentCallback.EVENT.register(data -> {
+        TooltipComponentCallback.EVENT.register(data -> {
             if (data instanceof RodTooltipComponent previewData) return new RodTooltipComponentRenderer(previewData);
             return null;
         });

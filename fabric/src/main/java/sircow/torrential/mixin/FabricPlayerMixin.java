@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(Player.class)
 public class FabricPlayerMixin {
     // conduit haste bonus
-    @ModifyVariable(method = "getDestroySpeed", at = @At(value = "STORE", ordinal = 0), name = "speed")
+    @ModifyVariable(method = "getDestroySpeed", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
     private float torrential$applyConduitModifier(float speed, BlockState state) {
-        Player self = (Player)(Object)this;
+        Player self = (Player) (Object) this;
         MobEffectInstance conduit = self.getEffect(MobEffects.CONDUIT_POWER);
         if (conduit == null) return speed;
 

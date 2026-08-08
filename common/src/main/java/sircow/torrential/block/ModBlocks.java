@@ -1,8 +1,6 @@
 package sircow.torrential.block;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,7 +15,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    private static final Map<Identifier, Definition> BLOCKS = new LinkedHashMap<>();
+    private static final Map<ResourceLocation, Definition> BLOCKS = new LinkedHashMap<>();
 
     public static final Supplier<Block> ANGLING_TABLE = register(
             Constants.id("angling_table"),
@@ -30,13 +28,13 @@ public class ModBlocks {
                     .ignitedByLava()
     );
 
-    private static Supplier<Block> register(Identifier id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+    private static Supplier<Block> register(ResourceLocation id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Supplier<Block> memoizedSupplier = new Supplier<>() {
             private Block instance;
 
             @Override
             public Block get() {
-                if (instance == null) instance = factory.apply(properties.setId(ResourceKey.create(Registries.BLOCK, id)));
+                if (instance == null) instance = factory.apply(properties);
                 return instance;
             }
         };
@@ -45,7 +43,7 @@ public class ModBlocks {
         return memoizedSupplier;
     }
 
-    public static Map<Identifier, Definition> getBlocks() {
+    public static Map<ResourceLocation, Definition> getBlocks() {
         return BLOCKS;
     }
 

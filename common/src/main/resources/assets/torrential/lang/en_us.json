@@ -1,5 +1,6 @@
 {
-  "item.torrential.angling_table": "Angling Table",
+  "block.torrential.angling_table": "Angling Table",
+
   "item.torrential.aquatic_fiber": "Aquatic Fiber",
   "item.torrential.cache": "Cache",
   "item.torrential.copper_fishing_hook": "Copper Fishing Hook",
@@ -20,12 +21,11 @@
   "item.minecraft.potion.effect.luck": "Potion of Luck",
   "item.minecraft.splash_potion.effect.luck": "Splash Potion of Luck",
   "item.minecraft.lingering_potion.effect.luck": "Lingering Potion of Luck",
-  "item.minecraft.potion.effect.nautilus_blessing": "Potion of Nautilus Blessing",
-  "item.minecraft.splash_potion.effect.nautilus_blessing": "Splash Potion of Nautilus Blessing",
-  "item.minecraft.lingering_potion.effect.nautilus_blessing": "Lingering Potion of Nautilus Blessing",
-  "item.minecraft.tipped_arrow.effect.nautilus_blessing": "Arrow of Nautilus Blessing",
 
   "itemgroup.torrential.items": "Torrential",
+
+  "sounds.torrential.cache_close": "Cache closes",
+  "sounds.torrential.cache_open": "Cache opens",
 
   "container.torrential.angling_table": "Angling Table",
   "container.torrential.cache": "Cache",
@@ -52,10 +52,6 @@
   "advancements.torrential.fishing.upgrade_fishing_rod_all.description": "Apply three different parts to your Fishing Rod",
   "advancements.torrential.fishing.upgrade_fishing_rod_netherite.title": "Reeling a Premium",
   "advancements.torrential.fishing.upgrade_fishing_rod_netherite.description": "Have all three Netherite parts applied to your Fishing Rod",
-  "advancements.torrential.fishing.tame_nautilus.title": "Fishy Friend",
-  "advancements.torrential.fishing.tame_nautilus.description": "Befriend a Nautilus with some Pufferfish",
-  "advancements.torrential.fishing.fish_on_nautilus.title": "Fishing With Friends",
-  "advancements.torrential.fishing.fish_on_nautilus.description": "Catch a Fish while riding a Nautilus",
 
   "info.torrential.conflict": "%s is incompatible with %s. Remove one of them."
 }

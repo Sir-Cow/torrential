@@ -10,7 +10,6 @@ import sircow.torrential.screen.CacheScreen;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class NeoForgeTorrentialClient {
-
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(Constants.ANGLING_TABLE_MENU_TYPE.get(), AnglingTableScreen::new);

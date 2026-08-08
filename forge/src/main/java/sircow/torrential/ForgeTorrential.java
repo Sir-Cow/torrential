@@ -32,8 +32,8 @@ public class ForgeTorrential {
             throw new IllegalStateException(String.valueOf(Component.translatable("info.torrential.conflict", Constants.MOD_ID, "Preserved: Inferno")));
         }
 
-        MENU_TYPES.register(context.getModBusGroup());
-        ForgeModItemGroups.CREATIVE_MODE_TABS.register(context.getModBusGroup());
+        MENU_TYPES.register(context.getModEventBus());
+        ForgeModItemGroups.CREATIVE_MODE_TABS.register(context.getModEventBus());
         CommonClass.init();
     }
 }

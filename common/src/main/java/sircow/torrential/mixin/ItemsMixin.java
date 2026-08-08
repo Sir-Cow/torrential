@@ -10,7 +10,7 @@ import sircow.torrential.component.ModComponents;
 
 @Mixin(Items.class)
 public class ItemsMixin {
-    @ModifyArg(method = "<clinit>", slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=fishing_rod")), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Items;registerItem(Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0))
+    @ModifyArg(method = "<clinit>", slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=fishing_rod")), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/FishingRodItem;<init>(Lnet/minecraft/world/item/Item$Properties;)V"), index = 0)
     private static Item.Properties torrential$modifyFishingRod(Item.Properties properties) {
         return new Item.Properties()
                 .stacksTo(1)

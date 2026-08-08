@@ -2,23 +2,22 @@ package sircow.torrential.client.renderer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import org.jspecify.annotations.NonNull;
+import org.jetbrains.annotations.NotNull;
 import sircow.torrential.Constants;
 import sircow.torrential.component.ModComponents;
 import sircow.torrential.component.RodTooltipComponent;
 
 public class RodTooltipComponentRenderer implements ClientTooltipComponent {
     private final RodTooltipComponent component;
-    private static final Identifier SLOT = Identifier.withDefaultNamespace("container/bundle/slot_background");
-    private static final Identifier HOOK_SLOT_TEXTURE = Constants.id("container/slot/hook");
-    private static final Identifier LINE_SLOT_TEXTURE = Constants.id("container/slot/line");
-    private static final Identifier SINKER_SLOT_TEXTURE = Constants.id("container/slot/sinker");
+    private static final ResourceLocation SLOT = Constants.id("container/slot/slot_background");
+    private static final ResourceLocation HOOK_SLOT_TEXTURE = Constants.id("container/slot/hook");
+    private static final ResourceLocation LINE_SLOT_TEXTURE = Constants.id("container/slot/line");
+    private static final ResourceLocation SINKER_SLOT_TEXTURE = Constants.id("container/slot/sinker");
 
     public RodTooltipComponentRenderer(RodTooltipComponent component) {
         this.component = component;
@@ -31,39 +30,42 @@ public class RodTooltipComponentRenderer implements ClientTooltipComponent {
     }
 
     @Override
-    public int getHeight(@NonNull Font font) {
+    public int getHeight() {
         return 24;
     }
 
     @Override
-    public int getWidth(@NonNull Font font) {
+    public int getWidth(@NotNull Font font) {
         return 72;
     }
 
     @Override
-    public void extractImage(@NonNull Font font, int x, int y, int w, int h, @NonNull GuiGraphicsExtractor graphics) {
+    public void renderImage(@NotNull Font font, int x, int y, @NotNull GuiGraphics graphics) {
         renderSlot(graphics, component.hook(), x, y, RodPart.HOOK);
         renderSlot(graphics, component.line(), x + 24, y, RodPart.LINE);
         renderSlot(graphics, component.sinker(), x + 48, y, RodPart.SINKER);
     }
 
-    private void renderSlot(GuiGraphicsExtractor graphics, ItemStack stack, int x, int y, RodPart part) {
-        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT, x, y, 24, 24);
+    private void renderSlot(GuiGraphics graphics, ItemStack stack, int x, int y, RodPart part) {
+        graphics.blitSprite(SLOT, x, y, 24, 24);
+
         if (stack.isEmpty()) {
-            Identifier texture = switch (part) {
+            ResourceLocation texture = switch (part) {
                 case HOOK -> HOOK_SLOT_TEXTURE;
                 case LINE -> LINE_SLOT_TEXTURE;
                 case SINKER -> SINKER_SLOT_TEXTURE;
             };
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, texture, x + 4, y + 4, 16, 16);
+
+            graphics.blitSprite(texture, x + 4, y + 4, 16, 16);
             return;
         }
-        graphics.item(stack, x + 4, y + 4);
-        graphics.itemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
+
+        graphics.renderItem(stack, x + 4, y + 4);
+        graphics.renderItemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
         renderDurabilityBar(graphics, x, y, part);
     }
 
-    private void renderDurabilityBar(GuiGraphicsExtractor graphics, int x, int y, RodPart part) {
+    private void renderDurabilityBar(GuiGraphics graphics, int x, int y, RodPart part) {
         ItemStack rod = component.rod();
         int damage = getCurrentDurability(rod, part);
         int max = getMaxDurability(part);
@@ -71,14 +73,14 @@ public class RodTooltipComponentRenderer implements ClientTooltipComponent {
         if (damage <= 0 && max > 0) return;
         if (max <= 0) return;
 
-        float remainingRatio = Math.max(0.0F, (float) (max - damage) / (float) max);
+        float remainingRatio = Math.max(0.0F, (float)(max - damage) / (float)max);
         int width = Math.round(13.0F * remainingRatio);
         int color = getDurabilityColor(remainingRatio);
         int left = x + 5;
         int top = y + 18;
 
-        graphics.fill(RenderPipelines.GUI, left, top, left + 13, top + 2, 0xFF000000);
-        graphics.fill(RenderPipelines.GUI, left, top, left + width, top + 1, color | 0xFF000000);
+        graphics.fill(left, top, left + 13, top + 2, 0xFF000000);
+        graphics.fill(left, top, left + width, top + 1, color | 0xFF000000);
     }
 
     private int getCurrentDurability(ItemStack rod, RodPart part) {

@@ -1,6 +1,6 @@
 package sircow.torrential.mixin;
 
-import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,7 +12,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,27 +25,24 @@ import sircow.torrential.menu.AnglingTableMenu;
 public class AnglingTableBlockMixin {
     @Shadow private static final Component CONTAINER_TITLE = Component.translatable("container.torrential.angling_table");
 
-    @SuppressWarnings("rawtypes")
     @Inject(method = "getMenuProvider", at = @At("HEAD"), cancellable = true)
-    public void torrential$checkForAnglingTable(BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<MenuProvider> cir) {
-        cir.setReturnValue(
-                new ExtendedMenuProvider() {
-                    @Override
-                    public @NotNull AbstractContainerMenu createMenu(int syncId, @NonNull Inventory playerInventory, @NonNull Player player) {
-                        return new AnglingTableMenu(syncId, playerInventory, ContainerLevelAccess.create(level, pos));
-                    }
+    private void torrential$checkForAnglingTable(BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<MenuProvider> cir) {
+        cir.setReturnValue(new ExtendedScreenHandlerFactory<BlockData>() {
+            @Override
+            public @NotNull AbstractContainerMenu createMenu(int syncId, Inventory playerInventory, Player player) {
+                return new AnglingTableMenu(syncId, playerInventory, ContainerLevelAccess.create(level, pos));
+            }
 
-                    @Override
-                    public @NotNull Component getDisplayName() {
-                        return CONTAINER_TITLE;
-                    }
+            @Override
+            public @NotNull Component getDisplayName() {
+                return CONTAINER_TITLE;
+            }
 
-                    @Override
-                    public Object getScreenOpeningData(@NonNull ServerPlayer serverPlayer) {
-                        boolean isEmpty = level.getBlockEntity(pos) == null;
-                        return new BlockData(isEmpty);
-                    }
-                }
-        );
+            @Override
+            public BlockData getScreenOpeningData(ServerPlayer player) {
+                boolean isEmpty = level.getBlockEntity(pos) == null;
+                return new BlockData(isEmpty);
+            }
+        });
     }
 }

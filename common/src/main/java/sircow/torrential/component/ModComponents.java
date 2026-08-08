@@ -3,14 +3,14 @@ package sircow.torrential.component;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import sircow.torrential.Constants;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ModComponents {
-    private static final Map<Identifier, DataComponentType<?>> COMPONENTS = new LinkedHashMap<>();
+    private static final Map<ResourceLocation, DataComponentType<?>> COMPONENTS = new LinkedHashMap<>();
 
     public static final DataComponentType<Integer> HOOK_DURABILITY = register("hook_durability", DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DataComponentType<String> HOOK_COMPONENT = register("hook_component", DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
@@ -29,7 +29,7 @@ public class ModComponents {
         return componentType;
     }
 
-    public static Map<Identifier, DataComponentType<?>> getComponents() {
+    public static Map<ResourceLocation, DataComponentType<?>> getComponents() {
         return COMPONENTS;
     }
 }

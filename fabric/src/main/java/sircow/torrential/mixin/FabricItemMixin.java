@@ -1,6 +1,6 @@
 package sircow.torrential.mixin;
 
-import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -57,16 +56,15 @@ public class FabricItemMixin {
     }
 
     @Unique
-    @SuppressWarnings("rawtypes")
     private MenuProvider getMenuProvider(Container container, ItemStack stackContext, int size) {
-        return new ExtendedMenuProvider() {
+        return new ExtendedScreenHandlerFactory<ItemData>() {
             @Override
-            public Object getScreenOpeningData(@NonNull ServerPlayer serverPlayer) {
+            public ItemData getScreenOpeningData(ServerPlayer player) {
                 return new ItemData(size);
             }
 
             @Override
-            public @NotNull AbstractContainerMenu createMenu(int syncId, @NonNull Inventory playerInventory, @NonNull Player player) {
+            public AbstractContainerMenu createMenu(int syncId, Inventory playerInventory, Player player) {
                 return new CacheMenu(syncId, playerInventory, container, stackContext);
             }
 

@@ -1,7 +1,6 @@
 package sircow.torrential.mixin;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -69,11 +68,11 @@ public class ConduitBlockEntityMixin {
     }
 
     // change magic damage to custom damage type which makes player-killed loot drop
-    @Inject(method = "updateAndAttackTarget", at = @At("HEAD"), cancellable = true)
-    private static void torrential$attackMultipleTargets(ServerLevel level, BlockPos worldPosition, BlockState blockState, ConduitBlockEntity conduit, boolean isActive, CallbackInfo ci) {
-        if (!isActive) return;
+    @Inject(method = "updateDestroyTarget", at = @At("HEAD"), cancellable = true)
+    private static void torrential$attackMultipleTargets(Level level, BlockPos blockPos, BlockState blockState, List<BlockPos> effectBlocks, ConduitBlockEntity conduit, CallbackInfo ci) {
+        if (effectBlocks.size() < 42) return;
 
-        AABB range = new AABB(worldPosition).inflate(16.0);
+        AABB range = new AABB(blockPos).inflate(16.0);
         List<LivingEntity> targets = level.getEntitiesOfClass(
                 LivingEntity.class,
                 range,
@@ -81,13 +80,13 @@ public class ConduitBlockEntityMixin {
         );
 
         if (!targets.isEmpty()) {
-            ServerPlayer fakePlayer = level.players().isEmpty() ? null : level.players().getFirst();
+            Player fakePlayer = level.players().isEmpty() ? null : level.players().getFirst();
             Player conduitKiller = fakePlayer != null ? new NoLootingPlayerWrapper(fakePlayer) : null;
             DamageSource source = ModDamageTypes.of(level, ModDamageTypes.CONDUIT, conduitKiller);
 
             for (LivingEntity target : targets) {
                 if (!target.isAlive()) continue;
-                target.hurtServer(level, source, 4.0F);
+                target.hurt(source, 4.0F);
 
                 if (level.getGameTime() % 20L == 0L) {
                     level.playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.CONDUIT_ATTACK_TARGET, SoundSource.BLOCKS, 1.0F, 1.0F);

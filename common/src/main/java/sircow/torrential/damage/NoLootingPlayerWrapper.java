@@ -4,7 +4,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
@@ -13,7 +12,7 @@ public class NoLootingPlayerWrapper extends Player {
     private final Player real;
 
     public NoLootingPlayerWrapper(Player real) {
-        super(real.level(), real.getGameProfile());
+        super(real.level(), real.blockPosition(), real.getYRot(), real.getGameProfile());
         this.real = real;
         this.setPos(real.getX(), real.getY(), real.getZ());
     }
@@ -36,11 +35,6 @@ public class NoLootingPlayerWrapper extends Player {
     @Override
     public @NotNull Component getName() {
         return Component.literal(String.valueOf(this.real.getName()));
-    }
-
-    @Override
-    public GameType gameMode() {
-        return real.gameMode();
     }
 
     @Override

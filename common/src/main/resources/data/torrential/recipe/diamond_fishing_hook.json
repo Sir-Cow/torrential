@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "F": "torrential:aquatic_fiber",
-    "X": "minecraft:diamond"
+    "F": {
+      "item": "torrential:aquatic_fiber"
+    },
+    "X": {
+      "tag": "c:gems/diamond"
+    }
   },
   "pattern": [
     "  F",

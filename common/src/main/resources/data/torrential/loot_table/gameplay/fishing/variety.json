@@ -307,21 +307,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pale_oak_sapling",
-          "weight": 10,
-          "conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:pale_garden"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:poppy",
           "weight": 10,
           "conditions": [

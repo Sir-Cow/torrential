@@ -5,14 +5,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import sircow.torrential.Constants;
-import sircow.torrential.client.renderer.RodTooltipComponentRenderer;
 import sircow.torrential.component.ModComponents;
-import sircow.torrential.component.RodTooltipComponent;
 import sircow.torrential.item.ModItems;
 import sircow.torrential.tag.ModTags;
 
@@ -21,11 +18,6 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeClientEvents {
-    @SubscribeEvent
-    public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
-        event.register(RodTooltipComponent.class, RodTooltipComponentRenderer::new);
-    }
-
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();

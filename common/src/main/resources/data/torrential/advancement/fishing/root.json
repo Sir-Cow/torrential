@@ -12,7 +12,7 @@
     }
   },
   "display": {
-    "background": "minecraft:block/prismarine_bricks",
+    "background": "minecraft:textures/block/prismarine_bricks.png",
     "description": {
       "translate": "advancements.torrential.fishing.root.description"
     },

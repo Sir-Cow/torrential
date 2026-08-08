@@ -1,8 +1,7 @@
 package sircow.torrential.event;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -25,7 +24,7 @@ import java.util.Map;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class NeoForgeRegisterEventHandler {
-    private static final Map<Identifier, Block> REGISTERED_BLOCKS = new HashMap<>();
+    private static final Map<ResourceLocation, Block> REGISTERED_BLOCKS = new HashMap<>();
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
@@ -40,7 +39,7 @@ public class NeoForgeRegisterEventHandler {
             ModBlocks.getBlocks().forEach((id, definition) -> {
                 Block block = REGISTERED_BLOCKS.get(id);
                 if (block != null) {
-                    helper.register(id, new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
+                    helper.register(id, new BlockItem(block, new Item.Properties()));
                 }
             });
 
@@ -67,6 +66,5 @@ public class NeoForgeRegisterEventHandler {
         builder.addMix(Potions.AWKWARD, Items.RABBIT_HIDE, ModPotions.luckHolder());
         builder.addMix(ModPotions.luckHolder(), Items.REDSTONE, ModPotions.longLuckHolder());
         builder.addMix(ModPotions.luckHolder(), Items.GLOWSTONE_DUST, ModPotions.strongLuckHolder());
-        builder.addMix(Potions.AWKWARD, Items.NAUTILUS_SHELL, ModPotions.nautilusBlessingHolder());
     }
 }

@@ -1,9 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "equipment",
   "key": {
-    "F": "torrential:aquatic_fiber",
-    "X": "minecraft:iron_ingot"
+    "F": {
+      "item": "torrential:aquatic_fiber"
+    },
+    "X": {
+      "tag": "c:ingots/iron"
+    }
   },
   "pattern": [
     " X ",

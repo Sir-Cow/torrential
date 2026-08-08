@@ -1,6 +1,3 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "torrential:block/angling_table"
-  }
+  "parent": "torrential:block/angling_table"
 }

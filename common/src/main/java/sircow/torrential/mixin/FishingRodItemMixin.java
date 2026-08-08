@@ -11,7 +11,6 @@ import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,7 +28,7 @@ public class FishingRodItemMixin {
     @Inject(method = "use", at = @At("HEAD"))
     private void torrential$onUse(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         if (level.isClientSide()) return;
-        if (player.gameMode() == GameType.CREATIVE) return;
+        if (player.isCreative()) return;
 
         ItemStack rod = player.getItemInHand(hand);
 

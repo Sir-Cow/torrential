@@ -13,8 +13,8 @@ import sircow.torrential.damage.ModDamageTypes;
 public class ServerPlayerMixin {
     // prevent advancements where player needs to kill a mob from granting when killed by conduit
     @Inject(method = "awardKillScore", at = @At("HEAD"), cancellable = true)
-    private void torrential$preventAdvancementStatIncrease(Entity victim, DamageSource killingBlow, CallbackInfo ci) {
-        if (killingBlow.is(ModDamageTypes.CONDUIT)) {
+    private void torrential$preventAdvancementStatIncrease(Entity entity, int i, DamageSource damageSource, CallbackInfo ci) {
+        if (damageSource.is(ModDamageTypes.CONDUIT)) {
             ci.cancel();
         }
     }

@@ -1,6 +1,7 @@
 package sircow.torrential.menu;
 
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,6 +19,7 @@ import sircow.torrential.Constants;
 import sircow.torrential.block.ModBlocks;
 import sircow.torrential.component.ModComponents;
 import sircow.torrential.item.ModItems;
+import sircow.torrential.sound.ModSounds;
 import sircow.torrential.tag.ModTags;
 
 import java.util.Objects;
@@ -73,6 +75,9 @@ public class AnglingTableMenu extends AbstractContainerMenu {
                     AnglingTableMenu.this.sinkerInputSlot.set(ItemStack.EMPTY);
                     AnglingTableMenu.this.sinkerPresent = false;
                 }
+
+                AnglingTableMenu.this.access.execute((level, blockPos) -> level.playSound(null, blockPos, ModSounds.ANGLING_TABLE_USE, SoundSource.BLOCKS, 1.0F, 1.0F));
+
                 super.onTake(player, stack);
             }
         });

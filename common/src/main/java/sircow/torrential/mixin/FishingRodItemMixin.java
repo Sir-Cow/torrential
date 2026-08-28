@@ -5,7 +5,7 @@ import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.FishingRodItem;
@@ -26,7 +26,7 @@ import java.util.Objects;
 @Mixin(FishingRodItem.class)
 public class FishingRodItemMixin {
     @Inject(method = "use", at = @At("HEAD"))
-    private void torrential$onUse(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+    private void torrential$onUse(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (level.isClientSide()) return;
         if (player.isCreative()) return;
 

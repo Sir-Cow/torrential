@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +33,7 @@ import java.util.Collections;
 @Mixin(Item.class)
 public class FabricItemMixin {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
-    public void torrential$openCacheMenu(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+    public void torrential$openCacheMenu(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if ((Object) this instanceof CacheItem cacheItem) {
             if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
                 ItemStack usedStack = player.getItemInHand(hand);
@@ -50,7 +50,7 @@ public class FabricItemMixin {
                 serverPlayer.openMenu(getMenuProvider(cacheContainer, usedStack, size));
                 serverPlayer.level().playSound(null, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), ModSounds.CACHE_OPEN, SoundSource.PLAYERS, 1.0F, 1.0F);
 
-                cir.setReturnValue(InteractionResult.SUCCESS);
+                cir.setReturnValue(InteractionResultHolder.success(usedStack));
             }
         }
     }

@@ -1,15 +1,24 @@
 {
+  "angling_table_use": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.fishing_bobber.retrieve",
+        "type": "event"
+      }
+    ],
+    "subtitle": "sounds.torrential.angling_table_use"
+  },
   "cache_open": {
-    "subtitle": "sounds.torrential.cache_open",
     "sounds": [
       "minecraft:block/barrel/open1",
       "minecraft:block/barrel/open2"
-    ]
+    ],
+    "subtitle": "sounds.torrential.cache_open"
   },
   "cache_close": {
-    "subtitle": "sounds.torrential.cache_close",
     "sounds": [
       "minecraft:block/barrel/close"
-    ]
+    ],
+    "subtitle": "sounds.torrential.cache_close"
   }
 }

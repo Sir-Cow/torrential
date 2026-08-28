@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import sircow.torrential.component.ModComponents;
 
 @Mixin(Items.class)
-public class ItemsMixin  {
+public class ItemsMixin {
     @ModifyArg(method = "<clinit>", slice = @Slice(from = @At(value = "FIELD", target = "Lnet/minecraft/references/ItemIds;FISHING_ROD:Lnet/minecraft/resources/ResourceKey;", opcode = Opcodes.GETSTATIC)), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Items;registerItem(Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0))
     private static Item.Properties torrential$modifyFishingRod(Item.Properties properties) {
         return new Item.Properties()

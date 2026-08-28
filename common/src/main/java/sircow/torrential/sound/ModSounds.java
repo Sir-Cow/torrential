@@ -10,6 +10,7 @@ import java.util.Map;
 public class ModSounds {
     private static final Map<Identifier, SoundEvent> SOUNDS = new LinkedHashMap<>();
 
+    public static final SoundEvent ANGLING_TABLE_USE = register("angling_table_use");
     public static final SoundEvent CACHE_OPEN = register("cache_open");
     public static final SoundEvent CACHE_CLOSE = register("cache_close");
 

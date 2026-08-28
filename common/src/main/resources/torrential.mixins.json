@@ -8,6 +8,8 @@
     "ConduitBlockEntityMixin",
     "FishingHookMixin",
     "FishingRodItemMixin",
+    "FuelValuesAccessor",
+    "FuelValuesMixin",
     "ItemMixin",
     "ItemsMixin",
     "ServerPlayerMixin",

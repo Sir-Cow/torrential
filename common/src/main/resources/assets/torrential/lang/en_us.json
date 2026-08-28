@@ -28,7 +28,9 @@
   "itemgroup.torrential.items": "Torrential",
 
   "sounds.torrential.angling_table_use": "Angling Table used",
-
+  "sounds.torrential.cache_close": "Cache closes",
+  "sounds.torrential.cache_open": "Cache opens",
+  
   "container.torrential.angling_table": "Angling Table",
   "container.torrential.cache": "Cache",
 

@@ -57,11 +57,12 @@ public class RodTooltipComponentRenderer implements ClientTooltipComponent {
             };
 
             graphics.blitSprite(texture, x + 4, y + 4, 16, 16);
-            return;
+        }
+        else {
+            graphics.renderItem(stack, x + 4, y + 4);
+            graphics.renderItemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
         }
 
-        graphics.renderItem(stack, x + 4, y + 4);
-        graphics.renderItemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
         renderDurabilityBar(graphics, x, y, part);
     }
 
@@ -79,8 +80,11 @@ public class RodTooltipComponentRenderer implements ClientTooltipComponent {
         int left = x + 5;
         int top = y + 18;
 
+        graphics.pose().pushPose();
+        graphics.pose().translate(0, 0, 500);
         graphics.fill(left, top, left + 13, top + 2, 0xFF000000);
         graphics.fill(left, top, left + width, top + 1, color | 0xFF000000);
+        graphics.pose().popPose();
     }
 
     private int getCurrentDurability(ItemStack rod, RodPart part) {

@@ -56,10 +56,12 @@ public class RodTooltipComponentRenderer implements ClientTooltipComponent {
                 case SINKER -> SINKER_SLOT_TEXTURE;
             };
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, texture, x + 4, y + 4, 16, 16);
-            return;
         }
-        graphics.item(stack, x + 4, y + 4);
-        graphics.itemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
+        else {
+            graphics.item(stack, x + 4, y + 4);
+            graphics.itemDecorations(Minecraft.getInstance().font, stack, x + 4, y + 4);
+        }
+
         renderDurabilityBar(graphics, x, y, part);
     }
 

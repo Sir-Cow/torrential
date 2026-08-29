@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.Mod;
 import sircow.torrential.Constants;
 import sircow.torrential.trade.ModTrades;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -24,7 +26,7 @@ public final class ForgeVillagerTradesEvent {
         Int2ObjectMap<VillagerTrades.ItemListing[]> modTrades = ModTrades.create();
 
         for (Int2ObjectMap.Entry<VillagerTrades.ItemListing[]> entry : modTrades.int2ObjectEntrySet()) {
-            trades.put(entry.getIntKey(), List.of(entry.getValue()));
+            trades.put(entry.getIntKey(), new ArrayList<>(Arrays.asList(entry.getValue())));
         }
     }
 }

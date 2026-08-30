@@ -3,8 +3,10 @@ package sircow.torrential.item.custom;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemContainerContents;
 import org.jetbrains.annotations.NotNull;
@@ -27,6 +29,15 @@ public class CacheItem extends Item {
     @Override
     public boolean canFitInsideContainerItems() {
         return false;
+    }
+
+    @Override
+    public void onDestroyed(final ItemEntity entity) {
+        ItemContainerContents contents = entity.getItem().get(DataComponents.CONTAINER);
+        if (contents != null) {
+            entity.getItem().set(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
+            ItemUtils.onContainerDestroyed(entity, contents.nonEmptyItemsCopy());
+        }
     }
 
     public void appendHoverText(@NotNull ItemStack itemStack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> list, @NotNull TooltipFlag tooltipFlag) {

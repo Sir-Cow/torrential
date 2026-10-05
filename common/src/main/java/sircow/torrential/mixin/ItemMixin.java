@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import sircow.torrential.component.RodComponentResolver;
 import sircow.torrential.component.RodTooltipComponent;
+import sircow.torrential.config.ConfigManager;
 
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class ItemMixin {
     @Inject(method = "getTooltipImage", at = @At("HEAD"), cancellable = true)
     private void torrential$fishingRodTooltip(ItemStack itemStack, CallbackInfoReturnable<Optional<TooltipComponent>> cir) {
-        if (!(itemStack.getItem() instanceof FishingRodItem)) return;
+        if (!(itemStack.getItem() instanceof FishingRodItem) || !ConfigManager.getClient().enableRodTooltip) return;
 
         ItemStack hook = RodComponentResolver.resolveHook(itemStack);
         ItemStack line = RodComponentResolver.resolveLine(itemStack);

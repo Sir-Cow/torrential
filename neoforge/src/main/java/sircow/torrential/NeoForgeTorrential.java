@@ -12,6 +12,7 @@ import net.neoforged.neoforge.network.connection.ConnectionType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import sircow.torrential.codec.ItemData;
+import sircow.torrential.config.NeoForgeConfig;
 import sircow.torrential.item.NeoForgeModItemGroups;
 import sircow.torrential.menu.AnglingTableMenu;
 import sircow.torrential.menu.CacheMenu;
@@ -34,8 +35,9 @@ public class NeoForgeTorrential {
             throw new IllegalStateException(String.valueOf(Component.translatable("info.torrential.conflict", Constants.MOD_ID, "Preserved: Inferno")));
         }
 
+        CommonClass.init();
+        NeoForgeConfig.loadServer();
         MENU_TYPES.register(modEventBus);
         NeoForgeModItemGroups.CREATIVE_MODE_TABS.register(modEventBus);
-        CommonClass.init();
     }
 }

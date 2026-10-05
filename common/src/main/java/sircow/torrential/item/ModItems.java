@@ -6,6 +6,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.ItemContainerContents;
+import sircow.torrential.config.ConfigManager;
 import sircow.torrential.item.custom.CacheItem;
 
 import java.util.LinkedHashMap;
@@ -28,34 +29,34 @@ public class ModItems {
     public static final Supplier<Item> COPPER_FISHING_HOOK = registerItem(
             ModItemIds.COPPER_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_FISHING_HOOK = registerItem(
             ModItemIds.IRON_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_FISHING_HOOK = registerItem(
             ModItemIds.PRISMARINE_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_FISHING_HOOK = registerItem(
             ModItemIds.DIAMOND_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_FISHING_HOOK = registerItem(
             ModItemIds.NETHERITE_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()
@@ -63,34 +64,34 @@ public class ModItems {
     public static final Supplier<Item> COPPER_LACED_FISHING_LINE = registerItem(
             ModItemIds.COPPER_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_LACED_FISHING_LINE = registerItem(
             ModItemIds.IRON_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_LACED_FISHING_LINE = registerItem(
             ModItemIds.PRISMARINE_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_LACED_FISHING_LINE = registerItem(
             ModItemIds.DIAMOND_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_LACED_FISHING_LINE = registerItem(
             ModItemIds.NETHERITE_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()
@@ -98,34 +99,34 @@ public class ModItems {
     public static final Supplier<Item> COPPER_SINKER = registerItem(
             ModItemIds.COPPER_SINKER,
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.COPPER_TOOL_MATERIALS)
     );
     public static final Supplier<Item> IRON_SINKER = registerItem(
             ModItemIds.IRON_SINKER,
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.IRON_TOOL_MATERIALS)
     );
     public static final Supplier<Item> PRISMARINE_SINKER = registerItem(
             ModItemIds.PRISMARINE_SINKER,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_SINKER = registerItem(
             ModItemIds.DIAMOND_SINKER,
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
     );
     public static final Supplier<Item> NETHERITE_SINKER = registerItem(
             ModItemIds.NETHERITE_SINKER,
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
                     .fireResistant()

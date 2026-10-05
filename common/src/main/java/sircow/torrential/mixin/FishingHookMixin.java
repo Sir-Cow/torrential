@@ -19,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import sircow.torrential.component.ModComponents;
+import sircow.torrential.config.ConfigManager;
+import sircow.torrential.config.ServerModConfig;
 import sircow.torrential.tag.ModTags;
 import sircow.torrential.trigger.ModTriggers;
 
@@ -29,22 +31,6 @@ import java.util.Random;
 @SuppressWarnings("FieldCanBeLocal")
 @Mixin(FishingHook.class)
 public abstract class FishingHookMixin {
-    @Unique private final int HOOK_SPEED_COPPER = 50;
-    @Unique private final int HOOK_SPEED_IRON = 100;
-    @Unique private final int HOOK_SPEED_PRISMARINE = 150;
-    @Unique private final int HOOK_SPEED_DIAMOND = 200;
-    @Unique private final int HOOK_SPEED_NETHERITE = 300;
-    @Unique private final double LINE_FORTUNE_COPPER = 0.5;
-    @Unique private final double LINE_FORTUNE_IRON = 1.0;
-    @Unique private final double LINE_FORTUNE_PRISMARINE = 1.5;
-    @Unique private final double LINE_FORTUNE_DIAMOND = 2.0;
-    @Unique private final double LINE_FORTUNE_NETHERITE = 3.0;
-    @Unique private final float SINKER_LUCK_COPPER = 0.5F;
-    @Unique private final float SINKER_LUCK_IRON = 1.0F;
-    @Unique private final float SINKER_LUCK_PRISMARINE = 1.5F;
-    @Unique private final float SINKER_LUCK_DIAMOND = 2.0F;
-    @Unique private final float SINKER_LUCK_NETHERITE = 3.0F;
-
     @Shadow @Mutable @Final private int lureSpeed;
     @Unique private boolean lureSpeedModified;
     @Shadow public abstract @Nullable Player getPlayerOwner();
@@ -71,18 +57,19 @@ public abstract class FishingHookMixin {
         ItemStack rod = getRod(owner);
         if (rod.isEmpty()) return;
 
+        ServerModConfig config = ConfigManager.getServer();
         MobEffectInstance conduit = owner.getEffect(MobEffects.CONDUIT_POWER);
-        if (conduit != null) this.lureSpeed += (int)((conduit.getAmplifier() + 1) * 50.0);
+        if (conduit != null) this.lureSpeed += (conduit.getAmplifier() + 1) * config.conduitLureBonus;
         MobEffectInstance blessing = owner.getEffect(MobEffects.BREATH_OF_THE_NAUTILUS);
-        if (blessing != null) this.lureSpeed += 50;
+        if (blessing != null) this.lureSpeed += config.breathLureBonus;
 
         String hook = rod.get(ModComponents.HOOK_COMPONENT);
 
-        if (Objects.equals(hook, "copper")) this.lureSpeed += HOOK_SPEED_COPPER;
-        else if (Objects.equals(hook, "iron")) this.lureSpeed += HOOK_SPEED_IRON;
-        else if (Objects.equals(hook, "prismarine")) this.lureSpeed += HOOK_SPEED_PRISMARINE;
-        else if (Objects.equals(hook, "diamond")) this.lureSpeed += HOOK_SPEED_DIAMOND;
-        else if (Objects.equals(hook, "netherite")) this.lureSpeed += HOOK_SPEED_NETHERITE;
+        if (Objects.equals(hook, "copper")) this.lureSpeed += config.hookSpeedCopper;
+        else if (Objects.equals(hook, "iron")) this.lureSpeed += config.hookSpeedIron;
+        else if (Objects.equals(hook, "prismarine")) this.lureSpeed += config.hookSpeedPrismarine;
+        else if (Objects.equals(hook, "diamond")) this.lureSpeed += config.hookSpeedDiamond;
+        else if (Objects.equals(hook, "netherite")) this.lureSpeed += config.hookSpeedNetherite;
 
         lureSpeedModified = true;
     }
@@ -100,30 +87,31 @@ public abstract class FishingHookMixin {
 
         Random random = new Random();
 
+        ServerModConfig config = ConfigManager.getServer();
         int bonus = 0;
         String line = rod.get(ModComponents.LINE_COMPONENT);
         double chance;
 
         if (Objects.equals(line, "copper")) {
-            chance = 1.0 - (2.0 / (LINE_FORTUNE_COPPER + 2.0));
+            chance = 1.0 - (2.0 / (config.lineFortuneCopper + 2.0));
             if (random.nextDouble() < chance) bonus++;
         }
         else if (Objects.equals(line, "iron")) {
-            chance = 1.0 - (2.0 / (LINE_FORTUNE_IRON + 2.0));
+            chance = 1.0 - (2.0 / (config.lineFortuneIron + 2.0));
             if (random.nextDouble() < chance) bonus++;
         }
         else if (Objects.equals(line, "prismarine")) {
-            chance = 1.0 - (2.0 / (LINE_FORTUNE_PRISMARINE + 2.0));
+            chance = 1.0 - (2.0 / (config.lineFortunePrismarine + 2.0));
             if (random.nextDouble() < chance) bonus++;
             if (random.nextDouble() < chance) bonus++;
         }
         else if (Objects.equals(line, "diamond")) {
-            chance = 1.0 - (2.0 / (LINE_FORTUNE_DIAMOND + 2.0));
+            chance = 1.0 - (2.0 / (config.lineFortuneDiamond + 2.0));
             if (random.nextDouble() < chance) bonus++;
             if (random.nextDouble() < chance) bonus++;
         }
         else if (Objects.equals(line, "netherite")) {
-            chance = 1.0 - (2.0 / (LINE_FORTUNE_NETHERITE + 2.0));
+            chance = 1.0 - (2.0 / (config.lineFortuneNetherite + 2.0));
             if (random.nextDouble() < chance) bonus++;
             if (random.nextDouble() < chance) bonus++;
             if (random.nextDouble() < chance) bonus++;
@@ -148,18 +136,19 @@ public abstract class FishingHookMixin {
 
         float result = base;
 
+        ServerModConfig config = ConfigManager.getServer();
         MobEffectInstance conduit = owner.getEffect(MobEffects.CONDUIT_POWER);
-        if (conduit != null) result += (conduit.getAmplifier() + 1) * 0.5F;
+        if (conduit != null) result += (conduit.getAmplifier() + 1) * (float) config.conduitLuckBonus;
         MobEffectInstance blessing = owner.getEffect(MobEffects.BREATH_OF_THE_NAUTILUS);
-        if (blessing != null) result += 0.5F;
+        if (blessing != null) result += (float) config.breathLuckBonus;
 
         String sinker = rod.get(ModComponents.SINKER_COMPONENT);
 
-        if (Objects.equals(sinker, "copper")) result += SINKER_LUCK_COPPER;
-        else if (Objects.equals(sinker, "iron")) result += SINKER_LUCK_IRON;
-        else if (Objects.equals(sinker, "prismarine")) result += SINKER_LUCK_PRISMARINE;
-        else if (Objects.equals(sinker, "diamond")) result += SINKER_LUCK_DIAMOND;
-        else if (Objects.equals(sinker, "netherite")) result += SINKER_LUCK_NETHERITE;
+        if (Objects.equals(sinker, "copper")) result += (float) config.sinkerLuckCopper;
+        else if (Objects.equals(sinker, "iron")) result += (float) config.sinkerLuckIron;
+        else if (Objects.equals(sinker, "prismarine")) result += (float) config.sinkerLuckPrismarine;
+        else if (Objects.equals(sinker, "diamond")) result += (float) config.sinkerLuckDiamond;
+        else if (Objects.equals(sinker, "netherite")) result += (float) config.sinkerLuckNetherite;
 
         args.set(0, result);
     }

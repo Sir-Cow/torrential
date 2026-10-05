@@ -10,6 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import sircow.torrential.codec.ItemData;
+import sircow.torrential.config.ForgeConfig;
 import sircow.torrential.item.ForgeModItemGroups;
 import sircow.torrential.menu.AnglingTableMenu;
 import sircow.torrential.menu.CacheMenu;
@@ -31,9 +32,9 @@ public class ForgeTorrential {
         if (Services.PLATFORM.isModLoaded("pinferno")) {
             throw new IllegalStateException(String.valueOf(Component.translatable("info.torrential.conflict", Constants.MOD_ID, "Preserved: Inferno")));
         }
-
+        CommonClass.init();
+        ForgeConfig.loadServer();
         MENU_TYPES.register(context.getModBusGroup());
         ForgeModItemGroups.CREATIVE_MODE_TABS.register(context.getModBusGroup());
-        CommonClass.init();
     }
 }

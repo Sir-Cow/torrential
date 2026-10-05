@@ -11,6 +11,9 @@ import sircow.torrential.Constants;
 import sircow.torrential.client.renderer.RodTooltipComponentRenderer;
 import sircow.torrential.component.ModComponents;
 import sircow.torrential.component.RodTooltipComponent;
+import sircow.torrential.config.ConfigManager;
+import sircow.torrential.config.FabricConfig;
+import sircow.torrential.config.ServerModConfig;
 import sircow.torrential.item.ModItems;
 import sircow.torrential.screen.AnglingTableScreen;
 import sircow.torrential.screen.CacheScreen;
@@ -22,6 +25,7 @@ import java.util.Map;
 public class FabricTorrentialClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        FabricConfig.loadClient();
         registerMenuScreens();
         registerCustomTooltip();
     }
@@ -74,43 +78,61 @@ public class FabricTorrentialClient implements ClientModInitializer {
         lines.add(insertIndex++, Component.empty());
         lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.rod_in_hand").withStyle(ChatFormatting.GRAY));
 
-        Map<String, Double> valuesMap = Map.of(
-                "copper", 0.5,
-                "iron", 1.0,
-                "prismarine", 1.5,
-                "diamond", 2.0,
-                "netherite", 3.0
+        ServerModConfig config = ConfigManager.getServer();
+
+        Map<String, Double> hookSpeedMap = Map.of(
+                "copper", (double) config.hookSpeedCopper / 100,
+                "iron", (double) config.hookSpeedIron / 100,
+                "prismarine", (double) config.hookSpeedPrismarine / 100,
+                "diamond", (double) config.hookSpeedDiamond / 100,
+                "netherite", (double) config.hookSpeedNetherite / 100
+        );
+        Map<String, Double> lineFortuneMap = Map.of(
+                "copper", config.lineFortuneCopper,
+                "iron", config.lineFortuneIron,
+                "prismarine", config.lineFortunePrismarine,
+                "diamond", config.lineFortuneDiamond,
+                "netherite", config.lineFortuneNetherite
+        );
+        Map<String, Double> sinkerLuckMap = Map.of(
+                "copper", config.sinkerLuckCopper,
+                "iron", config.sinkerLuckIron,
+                "prismarine", config.sinkerLuckPrismarine,
+                "diamond", config.sinkerLuckDiamond,
+                "netherite", config.sinkerLuckNetherite
         );
 
-        if (valuesMap.containsKey(hook)) lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.fishing_speed", valuesMap.get(hook)).withStyle(ChatFormatting.BLUE));
-        if (valuesMap.containsKey(line)) lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.fortune", valuesMap.get(line)).withStyle(ChatFormatting.BLUE));
-        if (valuesMap.containsKey(sinker)) lines.add(insertIndex, Component.translatable("item.torrential.modifiers.luck", valuesMap.get(sinker)).withStyle(ChatFormatting.BLUE));
+        if (hookSpeedMap.containsKey(hook)) lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.fishing_speed", hookSpeedMap.get(hook)).withStyle(ChatFormatting.BLUE));
+        if (lineFortuneMap.containsKey(line)) lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.fortune", lineFortuneMap.get(line)).withStyle(ChatFormatting.BLUE));
+        if (sinkerLuckMap.containsKey(sinker)) lines.add(insertIndex, Component.translatable("item.torrential.modifiers.luck", sinkerLuckMap.get(sinker)).withStyle(ChatFormatting.BLUE));
     }
 
     private void addFishingUpgradeTooltip(List<Component> lines, int insertIndex, Item item) {
         lines.add(insertIndex++, Component.empty());
         lines.add(insertIndex++, Component.translatable("item.torrential.modifiers.on_rod").withStyle(ChatFormatting.GRAY));
 
+        ServerModConfig config = ConfigManager.getServer();
+
         Map<Item, Double> fishingSpeedMap = Map.of(
-                ModItems.COPPER_FISHING_HOOK.get(), 0.5,
-                ModItems.IRON_FISHING_HOOK.get(), 1.0,
-                ModItems.PRISMARINE_FISHING_HOOK.get(), 1.5,
-                ModItems.DIAMOND_FISHING_HOOK.get(), 2.0,
-                ModItems.NETHERITE_FISHING_HOOK.get(), 3.0
+                ModItems.COPPER_FISHING_HOOK.get(), (double) config.hookSpeedCopper / 100,
+                ModItems.IRON_FISHING_HOOK.get(), (double) config.hookSpeedIron / 100,
+                ModItems.PRISMARINE_FISHING_HOOK.get(), (double) config.hookSpeedPrismarine / 100,
+                ModItems.DIAMOND_FISHING_HOOK.get(), (double) config.hookSpeedDiamond / 100,
+                ModItems.NETHERITE_FISHING_HOOK.get(), (double) config.hookSpeedNetherite / 100
         );
         Map<Item, Double> fortuneMap = Map.of(
-                ModItems.COPPER_LACED_FISHING_LINE.get(), 0.5,
-                ModItems.IRON_LACED_FISHING_LINE.get(), 1.0,
-                ModItems.PRISMARINE_LACED_FISHING_LINE.get(), 1.5,
-                ModItems.DIAMOND_LACED_FISHING_LINE.get(), 2.0,
-                ModItems.NETHERITE_LACED_FISHING_LINE.get(), 3.0
+                ModItems.COPPER_LACED_FISHING_LINE.get(), config.lineFortuneCopper,
+                ModItems.IRON_LACED_FISHING_LINE.get(), config.lineFortuneIron,
+                ModItems.PRISMARINE_LACED_FISHING_LINE.get(), config.lineFortunePrismarine,
+                ModItems.DIAMOND_LACED_FISHING_LINE.get(), config.lineFortuneDiamond,
+                ModItems.NETHERITE_LACED_FISHING_LINE.get(), config.lineFortuneNetherite
         );
         Map<Item, Double> luckMap = Map.of(
-                ModItems.COPPER_SINKER.get(), 0.5,
-                ModItems.IRON_SINKER.get(), 1.0,
-                ModItems.PRISMARINE_SINKER.get(), 1.5,
-                ModItems.DIAMOND_SINKER.get(), 2.0,
-                ModItems.NETHERITE_SINKER.get(), 3.0
+                ModItems.COPPER_SINKER.get(), config.sinkerLuckCopper,
+                ModItems.IRON_SINKER.get(), config.sinkerLuckIron,
+                ModItems.PRISMARINE_SINKER.get(), config.sinkerLuckPrismarine,
+                ModItems.DIAMOND_SINKER.get(), config.sinkerLuckDiamond,
+                ModItems.NETHERITE_SINKER.get(), config.sinkerLuckNetherite
         );
 
         addIfPresent(lines, insertIndex, item, fishingSpeedMap, "item.torrential.modifiers.fishing_speed");

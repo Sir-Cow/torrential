@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -42,6 +43,11 @@ public class NeoForgeClientEvents {
         String hook = stack.get(ModComponents.HOOK_COMPONENT);
         String line = stack.get(ModComponents.LINE_COMPONENT);
         String sinker = stack.get(ModComponents.SINKER_COMPONENT);
+
+        if (stack.is(Items.FISHING_ROD) && ModComponents.hasLegacyComponents(stack)) {
+            lines.add(insertIndex++, Component.literal("⚠ Outdated rod ⚠").withStyle(ChatFormatting.RED));
+            lines.add(insertIndex++, Component.literal("Place this rod in your inventory to update it!").withStyle(ChatFormatting.RED));
+        }
 
         if (stack.is(ModTags.ROD_UPGRADES)) {
             addFishingUpgradeTooltip(lines, insertIndex, stack.getItem());

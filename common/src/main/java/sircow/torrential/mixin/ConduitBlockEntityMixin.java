@@ -34,8 +34,8 @@ import java.util.List;
 
 @Mixin(ConduitBlockEntity.class)
 public class ConduitBlockEntityMixin {
-    @Unique private boolean wasActive;
-    @Unique private boolean wasFullyPowered;
+    @Unique private boolean torrential$wasActive;
+    @Unique private boolean torrential$wasFullyPowered;
 
     // extend conduit radius
     @ModifyConstant(method = "getDestroyRangeAABB", constant = @Constant(doubleValue = 8.0F))
@@ -77,7 +77,7 @@ public class ConduitBlockEntityMixin {
 
     // check conduit damage blacklist
     @Unique
-    private static boolean isConduitDamageBlacklisted(EntityType<?> type) {
+    private static boolean torrential$isConduitDamageBlacklisted(EntityType<?> type) {
         List<String> blacklist = ConfigManager.getServer().conduitDamageBlacklist;
         if (blacklist.isEmpty()) return false;
 
@@ -87,9 +87,7 @@ public class ConduitBlockEntityMixin {
             if (entry.startsWith("#")) {
                 if (type.builtInRegistryHolder().is(TagKey.create(Registries.ENTITY_TYPE, Identifier.parse(entry.substring(1))))) return true;
             }
-            else if (Identifier.parse(entry).equals(typeId)) {
-                return true;
-            }
+            else if (Identifier.parse(entry).equals(typeId)) return true;
         }
         return false;
     }
@@ -110,7 +108,7 @@ public class ConduitBlockEntityMixin {
         List<LivingEntity> targets = level.getEntitiesOfClass(
                 LivingEntity.class,
                 range,
-                entity -> entity instanceof Enemy && entity.isInWaterOrRain() && !isConduitDamageBlacklisted(entity.getType())
+                entity -> entity instanceof Enemy && entity.isInWaterOrRain() && !torrential$isConduitDamageBlacklisted(entity.getType())
         );
 
         if (!targets.isEmpty()) {
@@ -137,11 +135,11 @@ public class ConduitBlockEntityMixin {
 
         ConduitBlockEntityMixin self = (ConduitBlockEntityMixin)(Object)conduit;
         if (self != null) {
-            boolean wasActive = self.wasActive;
+            boolean wasActive = self.torrential$wasActive;
             boolean isActive = conduit.isActive();
             int structureSize = ((ConduitBlockEntityAccessor) conduit).getEffectBlocks().size();
             boolean isFullyPowered = structureSize >= 42;
-            boolean wasFullyPowered = self.wasFullyPowered;
+            boolean wasFullyPowered = self.torrential$wasFullyPowered;
 
             // activating conduit
             if (!wasActive && isActive) {
@@ -163,8 +161,8 @@ public class ConduitBlockEntityMixin {
                 }
             }
 
-            self.wasActive = isActive;
-            self.wasFullyPowered = isFullyPowered;
+            self.torrential$wasActive = isActive;
+            self.torrential$wasFullyPowered = isFullyPowered;
         }
     }
 }

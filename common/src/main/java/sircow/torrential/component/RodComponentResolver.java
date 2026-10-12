@@ -4,6 +4,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import sircow.torrential.item.ModItems;
 
+import java.util.List;
+
 public final class RodComponentResolver {
     private RodComponentResolver() {}
 
@@ -20,8 +22,8 @@ public final class RodComponentResolver {
             default -> ItemStack.EMPTY;
         };
 
-        int unbreaking = rod.getOrDefault(ModComponents.HOOK_UNBREAKING, 0);
-        if (unbreaking > 0 && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        List<String> enchantments = rod.getOrDefault(ModComponents.HOOK_ENCHANTMENTS, List.of());
+        if (!enchantments.isEmpty() && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         return result;
     }
 
@@ -38,8 +40,8 @@ public final class RodComponentResolver {
             default -> ItemStack.EMPTY;
         };
 
-        int unbreaking = rod.getOrDefault(ModComponents.LINE_UNBREAKING, 0);
-        if (unbreaking > 0 && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        List<String> enchantments = rod.getOrDefault(ModComponents.LINE_ENCHANTMENTS, List.of());
+        if (!enchantments.isEmpty() && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         return result;
     }
 
@@ -56,8 +58,8 @@ public final class RodComponentResolver {
             default -> ItemStack.EMPTY;
         };
 
-        int unbreaking = rod.getOrDefault(ModComponents.SINKER_UNBREAKING, 0);
-        if (unbreaking > 0 && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        List<String> enchantments = rod.getOrDefault(ModComponents.SINKER_ENCHANTMENTS, List.of());
+        if (!enchantments.isEmpty() && !result.isEmpty()) result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         return result;
     }
 }

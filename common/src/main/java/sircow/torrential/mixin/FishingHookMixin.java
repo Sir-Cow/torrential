@@ -32,11 +32,11 @@ import java.util.Random;
 @Mixin(FishingHook.class)
 public abstract class FishingHookMixin {
     @Shadow @Mutable @Final private int lureSpeed;
-    @Unique private boolean lureSpeedModified;
+    @Unique private boolean torrential$lureSpeedModified;
     @Shadow public abstract @Nullable Player getPlayerOwner();
 
     @Unique
-    private ItemStack getRod(Player player) {
+    private ItemStack torrential$getRod(Player player) {
         ItemStack main = player.getMainHandItem();
         if (main.has(ModComponents.HOOK_COMPONENT)) return main;
 
@@ -49,12 +49,12 @@ public abstract class FishingHookMixin {
     // hook effect
     @Inject(method = "catchingFish", at = @At("HEAD"))
     private void torrential$addLureSpeed(BlockPos pos, CallbackInfo ci) {
-        if (lureSpeedModified) return;
+        if (torrential$lureSpeedModified) return;
 
         Player owner = this.getPlayerOwner();
         if (owner == null) return;
 
-        ItemStack rod = getRod(owner);
+        ItemStack rod = torrential$getRod(owner);
         if (rod.isEmpty()) return;
 
         ServerModConfig config = ConfigManager.getServer();
@@ -71,7 +71,7 @@ public abstract class FishingHookMixin {
         else if (Objects.equals(hook, "diamond")) this.lureSpeed += config.hookSpeedDiamond;
         else if (Objects.equals(hook, "netherite")) this.lureSpeed += config.hookSpeedNetherite;
 
-        lureSpeedModified = true;
+        torrential$lureSpeedModified = true;
     }
 
     // line effect
@@ -80,7 +80,7 @@ public abstract class FishingHookMixin {
         Player owner = this.getPlayerOwner();
         if (owner == null || originalStack.isEmpty()) return originalStack;
 
-        ItemStack rod = getRod(owner);
+        ItemStack rod = torrential$getRod(owner);
         if (rod.isEmpty()) return originalStack;
 
         if (!(originalStack.is(ModTags.FISHING_LOOT_FISH) || originalStack.is(ModTags.FISHING_LOOT_VARIETY) || originalStack.is(ModTags.FISHING_LOOT_JUNK))) return originalStack;
@@ -131,7 +131,7 @@ public abstract class FishingHookMixin {
         Player owner = this.getPlayerOwner();
         if (owner == null) return;
 
-        ItemStack rod = getRod(owner);
+        ItemStack rod = torrential$getRod(owner);
         if (rod.isEmpty()) return;
 
         float result = base;

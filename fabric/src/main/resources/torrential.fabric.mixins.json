@@ -6,8 +6,7 @@
   "mixins": [
     "AnglingTableBlockMixin",
     "FabricItemMixin",
-    "FabricPlayerMixin",
-    "FabricPotionBrewingMixin"
+    "FabricPlayerMixin"
   ],
   "client": [],
   "server": [],

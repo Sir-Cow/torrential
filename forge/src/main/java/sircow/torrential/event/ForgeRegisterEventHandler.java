@@ -3,7 +3,6 @@ package sircow.torrential.event;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,7 +36,7 @@ public class ForgeRegisterEventHandler {
             ModBlocks.getBlocks().forEach((id, definition) -> {
                 Block block = REGISTERED_BLOCKS.get(id.block());
                 if (block != null) {
-                    helper.register(id.item(), new BlockItem(block, new Item.Properties().setId(id.item())));
+                    helper.register(id.item(), new BlockItem(block, ModBlocks.createBlockItemProperties(id)));
                 }
             });
 

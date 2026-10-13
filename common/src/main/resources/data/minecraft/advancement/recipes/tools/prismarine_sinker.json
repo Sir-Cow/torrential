@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:prismarine_sinker"
+        "recipes": "torrential:prismarine_sinker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

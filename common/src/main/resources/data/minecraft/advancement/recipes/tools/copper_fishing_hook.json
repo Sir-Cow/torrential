@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:copper_fishing_hook"
+        "recipes": "torrential:copper_fishing_hook"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

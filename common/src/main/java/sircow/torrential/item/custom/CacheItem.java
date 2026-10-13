@@ -38,7 +38,7 @@ public class CacheItem extends Item {
         ItemContainerContents contents = entity.getItem().get(DataComponents.CONTAINER);
         if (contents != null) {
             entity.getItem().set(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
-            ItemUtils.onContainerDestroyed(entity, contents.allItemsCopyStream());
+            ItemUtils.onContainerDestroyed(entity, contents.itemCopies());
         }
     }
 }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:iron_sinker"
+        "recipes": "torrential:iron_sinker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

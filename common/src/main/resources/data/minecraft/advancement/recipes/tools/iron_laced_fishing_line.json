@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:iron_laced_fishing_line"
+        "recipes": "torrential:iron_laced_fishing_line"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

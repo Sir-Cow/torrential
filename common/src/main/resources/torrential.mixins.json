@@ -9,8 +9,6 @@
     "ExperienceOrbMixin",
     "FishingHookMixin",
     "FishingRodItemMixin",
-    "FuelValuesAccessor",
-    "FuelValuesMixin",
     "InventoryMixin",
     "ItemMixin",
     "ItemsMixin",

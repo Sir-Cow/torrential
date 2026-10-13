@@ -1,11 +1,13 @@
 package sircow.torrential.block;
 
 import net.minecraft.references.BlockItemId;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import sircow.torrential.block.custom.AnglingTableBlock;
 
 import java.util.LinkedHashMap;
@@ -44,6 +46,14 @@ public class ModBlocks {
 
     public static Map<BlockItemId, Definition> getBlocks() {
         return BLOCKS;
+    }
+
+    public static Item.Properties createBlockItemProperties(BlockItemId id) {
+        Item.Properties properties = new Item.Properties().setId(id.item());
+        if (ModBlockItemIds.ANGLING_TABLE.equals(id)) {
+            properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS);
+        }
+        return properties;
     }
 
     public record Definition(Supplier<Block> factory) {}

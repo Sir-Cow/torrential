@@ -3,15 +3,13 @@
   "criteria": {
     "tamed_nautilus": {
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:entity_type": "minecraft:nautilus"
-            }
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:nautilus"
           }
-        ]
+        }
       },
       "trigger": "minecraft:tame_animal"
     }

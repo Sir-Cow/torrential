@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:copper_sinker"
+        "recipes": "torrential:copper_sinker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

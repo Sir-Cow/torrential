@@ -1,6 +1,5 @@
 package sircow.torrential.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
@@ -17,12 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import sircow.torrential.menu.AnglingTableMenu;
 
 public class AnglingTableBlock extends Block {
-    public static final MapCodec<AnglingTableBlock> CODEC = simpleCodec(AnglingTableBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable("container.torrential.angling_table");
-
-    public @NotNull MapCodec<? extends AnglingTableBlock> codec() {
-        return CODEC;
-    }
 
     public AnglingTableBlock(Properties properties) {
         super(properties);

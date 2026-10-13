@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:prismarine_laced_fishing_line"
+        "recipes": "torrential:prismarine_laced_fishing_line"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

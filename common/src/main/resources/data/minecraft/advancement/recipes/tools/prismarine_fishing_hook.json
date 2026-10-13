@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:prismarine_fishing_hook"
+        "recipes": "torrential:prismarine_fishing_hook"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

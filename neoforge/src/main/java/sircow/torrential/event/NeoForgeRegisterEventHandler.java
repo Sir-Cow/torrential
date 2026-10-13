@@ -3,13 +3,9 @@ package sircow.torrential.event;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import sircow.torrential.Constants;
 import sircow.torrential.block.ModBlocks;
@@ -39,7 +35,7 @@ public class NeoForgeRegisterEventHandler {
             ModBlocks.getBlocks().forEach((id, definition) -> {
                 Block block = REGISTERED_BLOCKS.get(id.block());
                 if (block != null) {
-                    helper.register(id.item(), new BlockItem(block, new Item.Properties().setId(id.item())));
+                    helper.register(id.item(), new BlockItem(block, ModBlocks.createBlockItemProperties(id)));
                 }
             });
 
@@ -57,15 +53,5 @@ public class NeoForgeRegisterEventHandler {
         event.register(Registries.TRIGGER_TYPE, helper ->
                 ModTriggers.getTriggers().forEach(helper::register)
         );
-    }
-
-    @SubscribeEvent
-    public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
-        var builder = event.getBuilder();
-
-        builder.addMix(Potions.AWKWARD, Items.RABBIT_HIDE, ModPotions.luckHolder());
-        builder.addMix(ModPotions.luckHolder(), Items.REDSTONE, ModPotions.longLuckHolder());
-        builder.addMix(ModPotions.luckHolder(), Items.GLOWSTONE_DUST, ModPotions.strongLuckHolder());
-        builder.addMix(Potions.AWKWARD, Items.NAUTILUS_SHELL, ModPotions.nautilusBlessingHolder());
     }
 }

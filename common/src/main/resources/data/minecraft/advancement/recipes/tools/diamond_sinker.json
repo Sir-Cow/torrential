@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "torrential:diamond_sinker"
+        "recipes": "torrential:diamond_sinker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

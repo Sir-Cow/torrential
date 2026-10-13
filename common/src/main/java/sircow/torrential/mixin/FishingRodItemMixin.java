@@ -1,7 +1,7 @@
 package sircow.torrential.mixin;
 
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
+import net.minecraft.network.protocol.game.ClientboundSwingAnimationPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +11,7 @@ import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -112,9 +113,9 @@ public class FishingRodItemMixin {
         if (current >= max) {
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BREAK, player.getSoundSource(), 1.0F, 1.0F);
 
-            player.swing(hand, true);
+            player.swing(hand, SwingAnimation.DEFAULT, true);
 
-            if (player instanceof ServerPlayer serverPlayer) serverPlayer.connection.send(new ClientboundAnimatePacket(player, 3));
+            if (player instanceof ServerPlayer serverPlayer) serverPlayer.connection.send(new ClientboundSwingAnimationPacket(player, InteractionHand.OFF_HAND, SwingAnimation.DEFAULT));
 
             stack.set(componentKey, "none");
             stack.set(durabilityKey, 0);

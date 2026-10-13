@@ -9,6 +9,7 @@ import sircow.torrential.block.FabricModBlocks;
 import sircow.torrential.codec.BlockData;
 import sircow.torrential.codec.ItemData;
 import sircow.torrential.component.FabricModComponents;
+import sircow.torrential.config.FabricConfig;
 import sircow.torrential.item.FabricModItemGroups;
 import sircow.torrential.item.FabricModItems;
 import sircow.torrential.menu.AnglingTableMenu;
@@ -33,6 +34,7 @@ public class FabricTorrential implements ModInitializer {
     @Override
     public void onInitialize() {
         CommonClass.init();
+        FabricConfig.loadServer();
         FabricModBlocks.registerFabricModBlocks();
         FabricModItems.registerFabricModItems();
         FabricModItemGroups.registerFabricItemGroups();

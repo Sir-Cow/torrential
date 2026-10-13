@@ -10,6 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import sircow.torrential.codec.ItemData;
+import sircow.torrential.config.ForgeConfig;
 import sircow.torrential.item.ForgeModItemGroups;
 import sircow.torrential.menu.AnglingTableMenu;
 import sircow.torrential.menu.CacheMenu;
@@ -35,5 +36,6 @@ public class ForgeTorrential {
         MENU_TYPES.register(context.getModEventBus());
         ForgeModItemGroups.CREATIVE_MODE_TABS.register(context.getModEventBus());
         CommonClass.init();
+        ForgeConfig.loadServer();
     }
 }

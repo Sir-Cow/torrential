@@ -6,10 +6,13 @@
   "mixins": [
     "ConduitBlockEntityAccessor",
     "ConduitBlockEntityMixin",
+    "ExperienceOrbMixin",
     "FishingHookMixin",
     "FishingRodItemMixin",
+    "InventoryMixin",
     "ItemMixin",
     "ItemsMixin",
+    "PlayerVanishingMixin",
     "ServerPlayerMixin",
     "TridentItemMixin"
   ],

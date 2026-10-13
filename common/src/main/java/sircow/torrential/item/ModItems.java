@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.ItemContainerContents;
 import org.jetbrains.annotations.NotNull;
+import sircow.torrential.config.ConfigManager;
 import sircow.torrential.item.custom.CacheItem;
 import sircow.torrential.tag.ModTags;
 
@@ -36,7 +37,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> IRON_FISHING_HOOK = registerItem(
@@ -48,13 +49,13 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> PRISMARINE_FISHING_HOOK = registerItem(
             ModItemIds.PRISMARINE_FISHING_HOOK,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_FISHING_HOOK = registerItem(
@@ -66,7 +67,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> NETHERITE_FISHING_HOOK = registerItem(
@@ -78,7 +79,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .fireResistant()
     );
@@ -91,7 +92,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> IRON_LACED_FISHING_LINE = registerItem(
@@ -103,13 +104,13 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> PRISMARINE_LACED_FISHING_LINE = registerItem(
             ModItemIds.PRISMARINE_LACED_FISHING_LINE,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_LACED_FISHING_LINE = registerItem(
@@ -121,7 +122,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> NETHERITE_LACED_FISHING_LINE = registerItem(
@@ -133,7 +134,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .fireResistant()
     );
@@ -146,7 +147,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(190)
+                    .durability(ConfigManager.getServer().copperDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> IRON_SINKER = registerItem(
@@ -158,13 +159,13 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(250)
+                    .durability(ConfigManager.getServer().ironDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> PRISMARINE_SINKER = registerItem(
             ModItemIds.PRISMARINE_SINKER,
             () -> new Item.Properties()
-                    .durability(768)
+                    .durability(ConfigManager.getServer().prismarineDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> DIAMOND_SINKER = registerItem(
@@ -176,7 +177,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(1562)
+                    .durability(ConfigManager.getServer().diamondDurability)
                     .stacksTo(1)
     );
     public static final Supplier<Item> NETHERITE_SINKER = registerItem(
@@ -188,7 +189,7 @@ public class ModItems {
                 }
             },
             () -> new Item.Properties()
-                    .durability(2032)
+                    .durability(ConfigManager.getServer().netheriteDurability)
                     .stacksTo(1)
                     .fireResistant()
     );

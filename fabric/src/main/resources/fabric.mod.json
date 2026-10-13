@@ -8,7 +8,7 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/torrential",
+        "homepage": "https://teampreserved.com/torrential",
         "sources": "https://github.com/Sir-Cow/torrential",
         "issues": "https://github.com/Sir-Cow/torrential/issues"
     },
@@ -39,7 +39,8 @@
     "custom": {
         "modmenu": {
             "links": {
-                "modmenu.modrinth": "https://modrinth.com/mod/torrential",
+                "modmenu.website": "https://teampreserved.com/torrential",
+                "modmenu.modrinth": "https://modrinth.com/project/sTjZv5lN",
                 "modmenu.curseforge": "https://curseforge.com/minecraft/mc-mods/torrential"
             },
             "update_checker": true

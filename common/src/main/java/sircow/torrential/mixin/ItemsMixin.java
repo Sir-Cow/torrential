@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Slice;
 import sircow.torrential.component.ModComponents;
 
+import java.util.List;
+
 @Mixin(Items.class)
 public class ItemsMixin {
     @ModifyArg(method = "<clinit>", slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=fishing_rod")), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Items;registerItem(Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0))
@@ -20,8 +22,8 @@ public class ItemsMixin {
                 .component(ModComponents.LINE_DURABILITY, 0)
                 .component(ModComponents.SINKER_COMPONENT, "none")
                 .component(ModComponents.SINKER_DURABILITY, 0)
-                .component(ModComponents.HOOK_UNBREAKING, 0)
-                .component(ModComponents.LINE_UNBREAKING, 0)
-                .component(ModComponents.SINKER_UNBREAKING, 0);
+                .component(ModComponents.HOOK_ENCHANTMENTS, List.of())
+                .component(ModComponents.LINE_ENCHANTMENTS, List.of())
+                .component(ModComponents.SINKER_ENCHANTMENTS, List.of());
     }
 }
